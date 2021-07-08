@@ -18,14 +18,25 @@ let rightAttractedShapesSketch = function (p) {
     const particleArray = [];
     let cloudArray = [];
 
+    function Color() {
+        this.r = 60;
+        this.g = 230;
+        this.b = 215;
+    }
+
+function Size() {
+	this.size = 32;
+}
     class Particle {
+        
         constructor(x, y, color) {
+            let size = new Size()
             this.pos = p.createVector(x, y);
             this.vel = p.createVector(0, 0);
             this.acc = p.createVector(0, 0);
             this.maxSpeed = 6;
             this.maxForce = .25;
-            this.r = 64;
+            this.r = size.size;
             this.color = color || 0;
         }
 
@@ -121,6 +132,15 @@ let rightAttractedShapesSketch = function (p) {
         //poseNet1.on("pose", gotPoses);
         cloudArray = []
     }
+    function Color() {
+        this.r = 60;
+        this.g = 230;
+        this.b = 215;
+    }
+    
+    // function Ball() {
+    //     this.s = 13;
+    // }
 
     p.setup = function () {
         p.createCanvas(WIDTH, HEIGHT);
@@ -132,6 +152,12 @@ let rightAttractedShapesSketch = function (p) {
         let resetButton = p.createButton("reset")
         resetButton.mousePressed(resetSketch)
         slider = p.createSlider(10, 100, 2)
+        colors =  new Color()
+        size = new Size();
+        let gui_col = new dat.GUI();
+        gui_col.add(colors, 'r', 0, 255);
+        let gui_size = new dat.GUI();
+        gui_size.add(size, 'size', 3, 33);
         p.background(50)
     };
 

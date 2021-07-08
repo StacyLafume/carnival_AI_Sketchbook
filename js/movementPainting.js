@@ -52,9 +52,9 @@ let leftAttractedShapesSketch = function (p) {
         //z);
         resetSketch()
 
-        let resetButton = p.createButton("reset")
-        resetButton.mousePressed(resetSketch)
-        slider = p.createSlider(10, 100, 2)
+        // let resetButton = p.createButton("reset")
+        // resetButton.mousePressed(resetSketch)
+        // slider = p.createSlider(10, 100, 2)
         p.background(50)
     };
 
@@ -208,9 +208,9 @@ let rightAttractedShapesSketch = function (p) {
     
         resetSketch()
 
-        let resetButton = p.createButton("reset")
-        resetButton.mousePressed(resetSketch)
-        slider = p.createSlider(10, 100, 2)
+        // let resetButton = p.createButton("reset")
+        // resetButton.mousePressed(resetSketch)
+        // slider = p.createSlider(10, 100, 2)
         p.background(50)
     };
 

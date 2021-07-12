@@ -294,7 +294,7 @@ let rightAttractedShapesSketch = function (p) {
             if (p.frameCount % (p.interval * 60) === 0) {
                 //particleArray.push(new Particle(random(width), random(height), hue));
                 // add a new cloud every four sec
-                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), 2,  colors.color || hue));
+                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), howMany.amount,  colors.color || hue));
             }
             for (let i = 0; i < cloudArray.length; i++) {
                 cloudArray[i].show();

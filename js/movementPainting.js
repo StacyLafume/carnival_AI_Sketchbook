@@ -8,15 +8,12 @@ let leftAttractedShapesSketch = function (p) {
     let dot;
     let vid
     let hue = 0;
-     p.interval = 2;
-    const WIDTH = window.innerWidth/3
-    const HEIGHT = window.innerHeight/3
+    p.interval = 2;
+    const WIDTH = window.innerWidth * (3.5/8)
+    const HEIGHT = window.innerHeight * (3.5/8)
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
-
-
-
 
 
     function modelLoaded() {
@@ -30,8 +27,6 @@ let leftAttractedShapesSketch = function (p) {
     }
 
     function resetSketch() {
-        //vid.size(WIDTH, HEIGHT);
-        
         video = p.createCapture(p.VIDEO);
         video.size(WIDTH, HEIGHT);
         video.hide();
@@ -46,7 +41,7 @@ let leftAttractedShapesSketch = function (p) {
 
         let leftCanvas = p.createCanvas(WIDTH, HEIGHT);
         leftCanvas.parent('leftCanvas');
-       // p.createCanvas(WIDTH, HEIGHT);
+        // p.createCanvas(WIDTH, HEIGHT);
         //vid = createVideo('valenciasDanceMoves/waverag.MOV',
         // vidLoad
         //z);
@@ -59,22 +54,22 @@ let leftAttractedShapesSketch = function (p) {
     };
 
     p.draw = function () {
-       
-       
-        
-           p.translate(p.width,0);
-           p.scale(-1, 1);
-           //image(vid, 900, 0, WIDTH,HEIGHT)
-           //image(video, 0,0, WIDTH/2, HEIGHT/2)
-          p.image(video,0,0, WIDTH, HEIGHT)
-           p.colorMode(p.HSL,255)
-           p.fill(hue, 255, 100)
- 
-       
-       
-       
-          
-         
+
+
+
+        p.translate(p.width, 0);
+        p.scale(-1, 1);
+        //image(vid, 900, 0, WIDTH,HEIGHT)
+        //image(video, 0,0, WIDTH/2, HEIGHT/2)
+        p.image(video, 0, 0, WIDTH, HEIGHT)
+        p.colorMode(p.HSL, 255)
+        p.fill(hue, 255, 100)
+
+
+
+
+
+
     };
 };
 
@@ -90,19 +85,55 @@ let rightAttractedShapesSketch = function (p) {
     let dot;
     let vid
     let hue = 0;
-     p.interval = 2;
-    const WIDTH = window.innerWidth/3
-    const HEIGHT = window.innerHeight/3
+    p.interval = 2;
+    const WIDTH = window.innerWidth * (3.5/8)
+    const HEIGHT = window.innerHeight * (3.5/8)
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
+
+    function Color() {
+        this.color = 0
+    }
+
+    function Speed() {
+        this.speed = 6
+    }
+
+    function Size() {
+        this.size = 1;
+    }
+
+    function HowMany() {
+        this.amount = 1
+    }
+    function Triangle(){
+        this.triangle = true
+    }
+    function Circle(){
+        this.circle = false
+    }
+
+    let gui = new dat.GUI();
+    let size = new Size();
+    let colors = new Color()
+    let speed = new Speed()
+    let howMany = new HowMany();
+    let triangle = new Triangle();
+    let circle = new Circle() 
+    gui.add(size, 'size', 1, 5);
+    gui.add(howMany, 'amount', 1, 5);
+    gui.add(colors, 'color', 0, 255);
+    gui.add(speed, 'speed', 6, 12);
+    gui.add(triangle, 'triangle');
+    gui.add(circle, 'circle');
 
     class Particle {
         constructor(x, y, color) {
             this.pos = p.createVector(x, y);
             this.vel = p.createVector(0, 0);
             this.acc = p.createVector(0, 0);
-            this.maxSpeed = 6;
+            this.maxSpeed = 1;
             this.maxForce = .25;
             this.r = 8;
             this.color = color || 0;
@@ -110,7 +141,7 @@ let rightAttractedShapesSketch = function (p) {
 
         attracted(target) {
             let force = p5.Vector.sub(target, this.pos);
-            force.setMag(this.maxSpeed);
+            force.setMag(this.maxSpeed *speed.speed);
             force.sub(this.vel);
             force.limit(this.maxForce);
             this.applyForce(force);
@@ -122,7 +153,7 @@ let rightAttractedShapesSketch = function (p) {
 
         update() {
             this.vel.add(this.acc);
-            this.vel.limit(this.maxSpeed);
+            this.vel.limit(this.maxSpeed * speed.speed);
             this.pos.add(this.vel);
             this.acc.set(0, 0);
         }
@@ -133,8 +164,8 @@ let rightAttractedShapesSketch = function (p) {
             p.push();
             p.translate(this.pos.x, this.pos.y);
             p.rotate(this.vel.heading());
-            ///p.circle(-this.r, -this.r / 2, Math.random()*60)
-            p.triangle(-this.r, -this.r / 4, -this.r, this.r / 4, this.r, 0);
+            circle.circle ? p.circle(-this.r, -this.r / 2, Math.random() * 60 * size.size): null
+            triangle.triangle ? p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 *  size.size, this.r * size.size, 0) : null;
             p.pop();
         }
 
@@ -205,7 +236,7 @@ let rightAttractedShapesSketch = function (p) {
 
         let rightCanvas = p.createCanvas(WIDTH, HEIGHT);
         rightCanvas.parent('rightCanvas');
-    
+
         resetSketch()
 
         // let resetButton = p.createButton("reset")
@@ -217,61 +248,61 @@ let rightAttractedShapesSketch = function (p) {
     p.draw = function () {
         p.strokeWeight(0);
         p.stroke(51)
-       
-         if (pose) {
-           let eyeR = pose.rightEye;
-           let eyeL = pose.leftEye;
-           let d = p.dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
-           p.push();
-           p.translate(p.width,0);
-           p.scale(-1, 1);
-           //image(vid, 900, 0, WIDTH,HEIGHT)
-           //image(video, 0,0, WIDTH/2, HEIGHT/2)
-          //p.image(video,0,0, WIDTH, HEIGHT)
-           p.colorMode(p.HSL,255)
-           p.fill(hue, 255, 100)
-           //ellipse(pose.nose.x, pose.nose.y, d);
-           //fill(0, 0, 255);
-           // ellipse(pose.rightWrist.x, pose.rightWrist.y, 32);
-           // ellipse(pose.leftWrist.x, pose.leftWrist.y, 32);
-       
-           attractorsArray = [];
-       
-           attractorsArray.push(p.createVector(pose.rightWrist.x, pose.rightWrist.y));
-           attractorsArray.push(p.createVector(pose.leftWrist.x, pose.leftWrist.y));
-           // attractorsArray.push(createVector(pose.rightHip.x, pose.rightHip.y));
-           // attractorsArray.push(createVector(pose.leftHip.x, pose.leftHip.y));
-       
-           for (let i = 0; i < pose.keypoints.length; i++) {
-             let x = pose.keypoints[i].position.x;
-             let y = pose.keypoints[i].position.y;
-             p.colorMode(p.HSL, 255);
-             p.fill(99, 255, 50);
-             //ellipse(x, y, 6, 2);
-           }
-       
-           for (let i = 0; i < skeleton.length; i++) {
-             let a = skeleton[i][0];
-             let b = skeleton[i][1];
-             p.strokeWeight(1);
-             p.colorMode(p.HSL, 255);
-             p.stroke(51);
-           
-             p.line(a.position.x, a.position.y, b.position.x, b.position.y);
-           }
-       
-           if (p.frameCount % (p.interval * 60) === 0) {
-             //particleArray.push(new Particle(random(width), random(height), hue));
-             // add a new cloud every four sec
-             cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), 2, hue));
-           }
-           for (let i = 0; i < cloudArray.length; i++) {
-             cloudArray[i].show();
-           }
-           hue > 255 ? (hue = 0) : hue++;
-           p.noStroke();
-           p.pop();
-         }
+
+        if (pose) {
+            let eyeR = pose.rightEye;
+            let eyeL = pose.leftEye;
+            let d = p.dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
+            p.push();
+            p.translate(p.width, 0);
+            p.scale(-1, 1);
+            //image(vid, 900, 0, WIDTH,HEIGHT)
+            //image(video, 0,0, WIDTH/2, HEIGHT/2)
+            //p.image(video,0,0, WIDTH, HEIGHT)
+            p.colorMode(p.HSL, 255)
+            p.fill(hue, 255, 100)
+            //ellipse(pose.nose.x, pose.nose.y, d);
+            //fill(0, 0, 255);
+            // ellipse(pose.rightWrist.x, pose.rightWrist.y, 32);
+            // ellipse(pose.leftWrist.x, pose.leftWrist.y, 32);
+
+            attractorsArray = [];
+
+            attractorsArray.push(p.createVector(pose.rightWrist.x, pose.rightWrist.y));
+            attractorsArray.push(p.createVector(pose.leftWrist.x, pose.leftWrist.y));
+            // attractorsArray.push(createVector(pose.rightHip.x, pose.rightHip.y));
+            // attractorsArray.push(createVector(pose.leftHip.x, pose.leftHip.y));
+
+            for (let i = 0; i < pose.keypoints.length; i++) {
+                let x = pose.keypoints[i].position.x;
+                let y = pose.keypoints[i].position.y;
+                p.colorMode(p.HSL, 255);
+                p.fill(99, 255, 50);
+                //ellipse(x, y, 6, 2);
+            }
+
+            for (let i = 0; i < skeleton.length; i++) {
+                let a = skeleton[i][0];
+                let b = skeleton[i][1];
+                p.strokeWeight(1);
+                p.colorMode(p.HSL, 255);
+                p.stroke(51);
+
+                p.line(a.position.x, a.position.y, b.position.x, b.position.y);
+            }
+
+            if (p.frameCount % (p.interval * 60) === 0) {
+                //particleArray.push(new Particle(random(width), random(height), hue));
+                // add a new cloud every four sec
+                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), 2,  colors.color || hue));
+            }
+            for (let i = 0; i < cloudArray.length; i++) {
+                cloudArray[i].show();
+            }
+            hue > 255 ? (hue = 0) : hue++;
+            p.noStroke();
+            p.pop();
+        }
     };
 };
 

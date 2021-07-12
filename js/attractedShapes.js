@@ -1,7 +1,7 @@
 
 
-let rightAttractedShapesSketch = function (p) {
-    let size = new Size();
+let AttractedShapesSketch = function (p) {
+   
     let video;
     let poseNet;
     let poseNet1;
@@ -12,28 +12,48 @@ let rightAttractedShapesSketch = function (p) {
     let vid
     let hue = 0;
     p.interval = 2;
-    const WIDTH = window.innerWidth
-    const HEIGHT = window.innerHeight
+    const WIDTH = window.innerWidth * (5/8) 
+    const HEIGHT = window.innerHeight * (5/8) 
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
 
-    let gui_size = new dat.GUI();
-    gui_size.add(size, 'size', 3, 33);
+
 
     function Color() {
-        this.r = 60;
-        this.g = 230;
-        this.b = 215;
+       this.color = 0
     }
+
+    function Speed() {
+        this.speed = 6
+     }
 
     function Size() {
-        this.size = 16;
+        this.size = 1;
     }
 
-    function Amount(){
-        this.amount = 2
+    function HowMany(){
+        this.amount = 1
     }
+    function Triangle(){
+        this.triangle = true
+    }
+    function Circle(){
+        this.circle = false
+    }
+    let gui = new dat.GUI();
+    let size = new Size();
+    let colors = new Color() 
+    let speed = new Speed();
+    let triangle = new Triangle();
+    let circle = new Circle() 
+    let howMany = new HowMany();
+    gui.add(size, 'size', 1, 5);
+    gui.add(howMany, 'amount', 1, 10);
+    gui.add(colors, 'color', 0, 255);
+    gui.add(speed, 'speed', 6,12);
+    gui.add(triangle, 'triangle');
+    gui.add(circle, 'circle');
 
     class Particle {
 
@@ -42,7 +62,7 @@ let rightAttractedShapesSketch = function (p) {
             this.pos = p.createVector(x, y);
             this.vel = p.createVector(0, 0);
             this.acc = p.createVector(0, 0);
-            this.maxSpeed = 6;
+            this.maxSpeed = 1;
             this.maxForce = .25;
             this.r = 16 ;
             this.color = color || 0;
@@ -52,7 +72,7 @@ let rightAttractedShapesSketch = function (p) {
 
         attracted(target) {
             let force = p5.Vector.sub(target, this.pos);
-            force.setMag(this.maxSpeed);
+            force.setMag(this.maxSpeed *speed.speed);
             force.sub(this.vel);
             force.limit(this.maxForce);
             this.applyForce(force);
@@ -64,7 +84,7 @@ let rightAttractedShapesSketch = function (p) {
 
         update() {
             this.vel.add(this.acc);
-            this.vel.limit(this.maxSpeed);
+            this.vel.limit(this.maxSpeed * speed.speed);
             this.pos.add(this.vel);
             this.acc.set(0, 0);
         }
@@ -75,8 +95,8 @@ let rightAttractedShapesSketch = function (p) {
             p.push();
             p.translate(this.pos.x, this.pos.y);
             p.rotate(this.vel.heading());
-            p.circle(-this.r, -this.r / 2, Math.random() * 60)
-            p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 *  size.size, this.r * size.size, 0);
+             circle.circle ? p.circle(-this.r, -this.r / 2, Math.random() * 60 * size.size): null
+             triangle.triangle ? p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 *  size.size, this.r * size.size, 0) : null;
             p.pop();
         }
 
@@ -99,10 +119,10 @@ let rightAttractedShapesSketch = function (p) {
         this.x = x;
         this.y = y;
         this.color = color;
+        this.amount = amount;
+        this.particleArray = new Array(this.amount);
 
-        this.particleArray = new Array(amount);
-
-        for (let i = 0; i < amount; i++) {
+        for (let i = 0; i < this.amount; i++) {
             this.particleArray[i] = new Particle(
                 this.x + p.random(p.width / 10),
                 this.y + p.random(p.height / 10),
@@ -113,7 +133,7 @@ let rightAttractedShapesSketch = function (p) {
         this.show = function () {
             console.log(attractorsArray.length);
             for (let i = 0; i < this.particleArray.length; i++) {
-                this.particleArray[i].attracted(attractorsArray[i % 4]);
+                this.particleArray[i].attracted(attractorsArray[i % 2]);
                 this.particleArray[i].update();
                 this.particleArray[i].show();
             }
@@ -144,7 +164,8 @@ let rightAttractedShapesSketch = function (p) {
     }
 
     p.setup = function () {
-        p.createCanvas(WIDTH, HEIGHT);
+       let canvas = p.createCanvas(WIDTH, HEIGHT);
+       canvas.parent('middle');
         //vid = createVideo('valenciasDanceMoves/waverag.MOV',
         // vidLoad
         //z);
@@ -153,19 +174,16 @@ let rightAttractedShapesSketch = function (p) {
         //let resetButton = p.createButton("reset")
         //resetButton.mousePressed(resetSketch)
         //slider = p.createSlider(10, 100, 2)
-        let colors = new Color()
-
-        let amount = new Amount();
-        let gui_col = new dat.GUI();
-        gui_col.add(colors, 'r', 0, 255);
+   
     
-       
-        let gui_amount = new dat.GUI();
-        gui_amount.add(amount, 'amount', 2, 20);
+
         p.background(50)
     };
 
+
     p.draw = function () {
+
+        let int = Math.ceil(howMany.amount)
         p.strokeWeight(0);
         p.stroke(51)
 
@@ -214,7 +232,7 @@ let rightAttractedShapesSketch = function (p) {
             if (p.frameCount % (p.interval * 60) === 0) {
                 //particleArray.push(new Particle(random(width), random(height), hue));
                 // add a new cloud every four sec
-                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), 2, hue));
+                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), int, colors.color || hue));
             }
             for (let i = 0; i < cloudArray.length; i++) {
                 cloudArray[i].show();
@@ -226,4 +244,4 @@ let rightAttractedShapesSketch = function (p) {
     };
 };
 
-let rightP5 = new p5(rightAttractedShapesSketch);
+let AttractedP5 = new p5(AttractedShapesSketch);

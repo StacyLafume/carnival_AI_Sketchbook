@@ -10,7 +10,7 @@ let leftAttractedShapesSketch = function (p) {
     let hue = 0;
     p.interval = 2;
     const WIDTH = window.innerWidth * (3.5/8)
-    const HEIGHT = window.innerHeight * (3.5/8)
+    const HEIGHT = window.innerHeight * (3.5/8) * 1.33 
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
@@ -55,8 +55,6 @@ let leftAttractedShapesSketch = function (p) {
 
     p.draw = function () {
 
-
-
         p.translate(p.width, 0);
         p.scale(-1, 1);
         //image(vid, 900, 0, WIDTH,HEIGHT)
@@ -64,11 +62,6 @@ let leftAttractedShapesSketch = function (p) {
         p.image(video, 0, 0, WIDTH, HEIGHT)
         p.colorMode(p.HSL, 255)
         p.fill(hue, 255, 100)
-
-
-
-
-
 
     };
 };
@@ -87,7 +80,7 @@ let rightAttractedShapesSketch = function (p) {
     let hue = 0;
     p.interval = 2;
     const WIDTH = window.innerWidth * (3.5/8)
-    const HEIGHT = window.innerHeight * (3.5/8)
+    const HEIGHT = window.innerHeight * (3.5/8)  * 1.33 
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];

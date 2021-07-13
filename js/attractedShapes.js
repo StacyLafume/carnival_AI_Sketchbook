@@ -12,8 +12,8 @@ let AttractedShapesSketch = function (p) {
     let vid
     let hue = 0;
     p.interval = 2;
-    const WIDTH = window.innerWidth * (5/8) 
-    const HEIGHT = window.innerHeight * (5/8) 
+    const WIDTH = window.innerWidth *  (5/8) 
+    const HEIGHT = window.innerHeight  * (5/8)  * 1.33
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
@@ -224,7 +224,7 @@ let AttractedShapesSketch = function (p) {
                 let b = skeleton[i][1];
                 p.strokeWeight(1);
                 p.colorMode(p.HSL, 255);
-                p.stroke(51);
+                p.stroke(255);
 
                 p.line(a.position.x, a.position.y, b.position.x, b.position.y);
             }

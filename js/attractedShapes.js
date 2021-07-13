@@ -17,6 +17,7 @@ let AttractedShapesSketch = function (p) {
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
+    
 
 
 
@@ -49,7 +50,7 @@ let AttractedShapesSketch = function (p) {
     let circle = new Circle() 
     let howMany = new HowMany();
     gui.add(size, 'size', 1, 5);
-    gui.add(howMany, 'amount', 1, 10);
+    gui.add(howMany, 'amount', 1, 100);
     gui.add(colors, 'color', 0, 255);
     gui.add(speed, 'speed', 6,12);
     gui.add(triangle, 'triangle');
@@ -115,30 +116,30 @@ let AttractedShapesSketch = function (p) {
     }
 
 
-    function Cloud(x, y, amount, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.amount = amount;
-        this.particleArray = new Array(this.amount);
+    // function Cloud(x, y, amount, color) {
+    //     this.x = x;
+    //     this.y = y;
+    //     this.color = color;
+    //     this.amount = amount;
+    //     this.particleArray = new Array(this.amount);
 
-        for (let i = 0; i < this.amount; i++) {
-            this.particleArray[i] = new Particle(
-                this.x + p.random(p.width / 10),
-                this.y + p.random(p.height / 10),
-                this.color
-            );
-        }
+    //     for (let i = 0; i < this.amount; i++) {
+    //         this.particleArray[i] = new Particle(
+    //             this.x + p.random(p.width / 10),
+    //             this.y + p.random(p.height / 10),
+    //             this.color
+    //         );
+    //     }
 
-        this.show = function () {
-            console.log(attractorsArray.length);
-            for (let i = 0; i < this.particleArray.length; i++) {
-                this.particleArray[i].attracted(attractorsArray[i % 2]);
-                this.particleArray[i].update();
-                this.particleArray[i].show();
-            }
-        };
-    }
+    //     this.show = function () {
+    //         console.log(attractorsArray.length);
+    //         for (let i = 0; i < this.particleArray.length; i++) {
+    //             this.particleArray[i].attracted(attractorsArray[i % 2]);
+    //             this.particleArray[i].update();
+    //             this.particleArray[i].show();
+    //         }
+    //     };
+    // }
 
     function modelLoaded() {
         console.log("poseNet ready");
@@ -152,7 +153,7 @@ let AttractedShapesSketch = function (p) {
 
     function resetSketch() {
         //vid.size(WIDTH, HEIGHT);
-        cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
+       // cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
         video = p.createCapture(p.VIDEO);
         video.size(WIDTH, HEIGHT);
         video.hide();
@@ -160,7 +161,7 @@ let AttractedShapesSketch = function (p) {
         //poseNet1 = ml5.poseNet(vid, modelLoaded);
         poseNet.on("pose", gotPoses);
         //poseNet1.on("pose", gotPoses);
-        cloudArray = []
+        //cloudArray = []
     }
 
     p.setup = function () {
@@ -232,10 +233,20 @@ let AttractedShapesSketch = function (p) {
             if (p.frameCount % (p.interval * 60) === 0) {
                 //particleArray.push(new Particle(random(width), random(height), hue));
                 // add a new cloud every four sec
-                cloudArray.push(new Cloud(p.random(p.width), p.random(p.height), int, colors.color || hue));
+                const newParticleCount =  int - particleArray.length
+                if (newParticleCount < 0) {
+                    particleArray.splice(0, Math.abs(newParticleCount))
+                }else{
+                    for (let i = 0; i <  newParticleCount; i++){
+                        particleArray.push(new Particle(p.random(p.width), p.random(p.height), colors.color || hue));
+                        }
+                }
+               
             }
-            for (let i = 0; i < cloudArray.length; i++) {
-                cloudArray[i].show();
+            for (let i = 0; i < particleArray.length; i++) {
+                particleArray[i].attracted(attractorsArray[i % 2]);
+                particleArray[i].update();
+                particleArray[i].show();
             }
             hue > 255 ? (hue = 0) : hue++;
             p.noStroke();

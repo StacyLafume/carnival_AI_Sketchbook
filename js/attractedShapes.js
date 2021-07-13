@@ -59,7 +59,6 @@ let AttractedShapesSketch = function (p) {
     class Particle {
 
         constructor(x, y, color) {
-          
             this.pos = p.createVector(x, y);
             this.vel = p.createVector(0, 0);
             this.acc = p.createVector(0, 0);

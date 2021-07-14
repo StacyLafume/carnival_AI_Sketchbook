@@ -1,7 +1,7 @@
 
 
 let AttractedShapesSketch = function (p) {
-   
+
     let video;
     let poseNet;
     let poseNet1;
@@ -12,49 +12,88 @@ let AttractedShapesSketch = function (p) {
     let vid
     let hue = 0;
     p.interval = 2;
-    const WIDTH = window.innerWidth *  (5/8) 
-    const HEIGHT = window.innerHeight  * (5/8)  * 1.33
+    const WIDTH = window.innerWidth * (5 / 8)
+    const HEIGHT = window.innerHeight * (5 / 8) * 1.33
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
-    
+    let colorIndex = 0
+
 
 
 
     function Color() {
-       this.color = 0
-    }
+        this.red = false
+        this.orange = false
+        this.yellow = false
+        this.green = false
+        this.blue = false
+        this.purple = false
+        this.random = true
 
-    function Speed() {
-        this.speed = 6
-     }
+    }
 
     function Size() {
         this.size = 1;
     }
 
-    function HowMany(){
+    function HowMany() {
         this.amount = 1
     }
-    function Triangle(){
+    function Triangle() {
         this.triangle = true
     }
-    function Circle(){
+    function Circle() {
         this.circle = false
+    }
+
+    function Hips() {
+        this.hips = false
+    }
+    function Wrists() {
+        this.wrists = true
+    }
+    function Shoulders() {
+        this.shoulders = false
+    }
+    function Head() {
+        this.head = false
     }
     let gui = new dat.GUI();
     let size = new Size();
-    let colors = new Color() 
-    let speed = new Speed();
+    let colors = new Color()
     let triangle = new Triangle();
-    let circle = new Circle() 
+    let circle = new Circle()
     let howMany = new HowMany();
-    gui.add(size, 'size', 1, 5);
-    gui.add(howMany, 'amount', 1, 100);
-    gui.add(colors, 'color', 0, 255);
-    gui.add(speed, 'speed', 6,12);
-    gui.add(triangle, 'triangle');
-    gui.add(circle, 'circle');
+    let hips = new Hips();
+    let wrists = new Wrists();
+    let shoulders = new Shoulders()
+    let head = new Head()
+
+    const settings = gui.addFolder('Settings');
+    settings.add(size, 'size', 1, 5);
+    settings.add(howMany, 'amount', 1, 100);
+
+
+
+    const shapes = gui.addFolder('Shapes');
+    shapes.add(triangle, 'triangle');
+    shapes.add(circle, 'circle');
+
+    const bodyParts = gui.addFolder('Attracted Body Parts');
+    bodyParts.add(shoulders, 'shoulders')
+    bodyParts.add(hips, 'hips');
+    bodyParts.add(wrists, 'wrists');
+    bodyParts.add(head, 'head');
+
+    const color = gui.addFolder('Colors');
+    color.add(colors, 'red');
+    color.add(colors, 'orange');
+    color.add(colors, 'yellow');
+    color.add(colors, 'green');
+    color.add(colors, 'blue');
+    color.add(colors, 'purple');
+    color.add(colors, 'random');
 
     class Particle {
 
@@ -62,9 +101,9 @@ let AttractedShapesSketch = function (p) {
             this.pos = p.createVector(x, y);
             this.vel = p.createVector(0, 0);
             this.acc = p.createVector(0, 0);
-            this.maxSpeed = 1;
+            this.maxSpeed = 6;
             this.maxForce = .25;
-            this.r = 16 ;
+            this.r = 16;
             this.color = color || 0;
         }
 
@@ -72,7 +111,7 @@ let AttractedShapesSketch = function (p) {
 
         attracted(target) {
             let force = p5.Vector.sub(target, this.pos);
-            force.setMag(this.maxSpeed *speed.speed);
+            force.setMag(this.maxSpeed );
             force.sub(this.vel);
             force.limit(this.maxForce);
             this.applyForce(force);
@@ -84,7 +123,7 @@ let AttractedShapesSketch = function (p) {
 
         update() {
             this.vel.add(this.acc);
-            this.vel.limit(this.maxSpeed * speed.speed);
+            this.vel.limit(this.maxSpeed );
             this.pos.add(this.vel);
             this.acc.set(0, 0);
         }
@@ -95,8 +134,8 @@ let AttractedShapesSketch = function (p) {
             p.push();
             p.translate(this.pos.x, this.pos.y);
             p.rotate(this.vel.heading());
-             circle.circle ? p.circle(-this.r, -this.r / 2, Math.random() * 60 * size.size): null
-             triangle.triangle ? p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 *  size.size, this.r * size.size, 0) : null;
+            circle.circle ? p.circle(-this.r, -this.r / 2, Math.random() * 60 * size.size) : null
+            triangle.triangle ? p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 * size.size, this.r * size.size, 0) : null;
             p.pop();
         }
 
@@ -144,6 +183,7 @@ let AttractedShapesSketch = function (p) {
         console.log("poseNet ready");
     }
     function gotPoses(poses) {
+
         if (poses.length > 0) {
             pose = poses[0].pose;
             skeleton = poses[0].skeleton;
@@ -152,7 +192,7 @@ let AttractedShapesSketch = function (p) {
 
     function resetSketch() {
         //vid.size(WIDTH, HEIGHT);
-       // cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
+        // cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
         video = p.createCapture(p.VIDEO);
         video.size(WIDTH, HEIGHT);
         video.hide();
@@ -164,8 +204,8 @@ let AttractedShapesSketch = function (p) {
     }
 
     p.setup = function () {
-       let canvas = p.createCanvas(WIDTH, HEIGHT);
-       canvas.parent('middle');
+        let canvas = p.createCanvas(WIDTH, HEIGHT);
+        canvas.parent('middle');
         //vid = createVideo('valenciasDanceMoves/waverag.MOV',
         // vidLoad
         //z);
@@ -174,14 +214,16 @@ let AttractedShapesSketch = function (p) {
         //let resetButton = p.createButton("reset")
         //resetButton.mousePressed(resetSketch)
         //slider = p.createSlider(10, 100, 2)
-   
-    
+
+
 
         p.background(50)
     };
 
 
+
     p.draw = function () {
+
 
         let int = Math.ceil(howMany.amount)
         p.strokeWeight(0);
@@ -206,10 +248,20 @@ let AttractedShapesSketch = function (p) {
 
             attractorsArray = [];
 
-            attractorsArray.push(p.createVector(pose.rightWrist.x, pose.rightWrist.y));
-            attractorsArray.push(p.createVector(pose.leftWrist.x, pose.leftWrist.y));
-            // attractorsArray.push(createVector(pose.rightHip.x, pose.rightHip.y));
-            // attractorsArray.push(createVector(pose.leftHip.x, pose.leftHip.y));
+
+
+            hips.hips ? attractorsArray.push(p.createVector(pose.rightHip.x, pose.rightHip.y)) : null
+            hips.hips ? attractorsArray.push(p.createVector(pose.leftHip.x, pose.leftHip.y)) : null
+            wrists.wrists ? attractorsArray.push(p.createVector(pose.rightWrist.x, pose.rightWrist.y)) : null;
+            wrists.wrists ? attractorsArray.push(p.createVector(pose.leftWrist.x, pose.leftWrist.y)) : null;
+            shoulders.shoulders ? attractorsArray.push(p.createVector(pose.leftShoulder.x, pose.leftShoulder.y)) : null;
+            shoulders.shoulders ? attractorsArray.push(p.createVector(pose.rightShoulder.x, pose.rightShoulder.y)) : null;
+            head.head ? attractorsArray.push(p.createVector(pose.leftEar.x, pose.leftEar.y)) : null;
+            head.head ? attractorsArray.push(p.createVector(pose.rightEar.x, pose.rightEar.y)) : null;
+            head.head ? attractorsArray.push(p.createVector(pose.leftEye.x, pose.leftEye.y)) : null;
+            head.head ? attractorsArray.push(p.createVector(pose.rightEye.x, pose.rightEye.y)) : null;
+            head.head ? attractorsArray.push(p.createVector(pose.nose.x, pose.nose.y)) : null;
+
 
             for (let i = 0; i < pose.keypoints.length; i++) {
                 let x = pose.keypoints[i].position.x;
@@ -232,24 +284,55 @@ let AttractedShapesSketch = function (p) {
             if (p.frameCount % (p.interval * 60) === 0) {
                 //particleArray.push(new Particle(random(width), random(height), hue));
                 // add a new cloud every four sec
-                const newParticleCount =  int - particleArray.length
+                const newParticleCount = int - particleArray.length
                 if (newParticleCount < 0) {
                     particleArray.splice(0, Math.abs(newParticleCount))
-                }else{
-                    for (let i = 0; i <  newParticleCount; i++){
-                        particleArray.push(new Particle(p.random(p.width), p.random(p.height), colors.color || hue));
-                        }
+                } else {
+                    const colorArray = []
+                    if(colors.red){
+                        colorArray.push(255)
+                    }
+                    if(colors.orange){
+                        colorArray.push(20)
+                    }
+                    if(colors.yellow){
+                        colorArray.push(40)
+                    }
+                    if(colors.green){
+                        colorArray.push( 60)
+                    }
+                    if(colors.blue){
+                        colorArray.push( 150 )
+                    } 
+                    if(colors.purple){
+                        colorArray.push(200)
+                    }
+                    if(colors.random){
+                        colorArray.push(hue)
+                    }
+                    for (let i = 0; i < newParticleCount; i++) {
+                       // index will never leave the range the range will be the remainder
+                        particleArray.push(new Particle(p.random(p.width), p.random(p.height),  colorArray[colorIndex % colorArray.length]|| hue));
+                        colorIndex ++ 
+                    }
                 }
-               
+
+
             }
+
+           
+
             for (let i = 0; i < particleArray.length; i++) {
-                particleArray[i].attracted(attractorsArray[i % 2]);
+                //console.log(attractorsArray[i % attractorsArray.length], attractorsArray.length, i)
+                particleArray[i].attracted(attractorsArray[i % attractorsArray.length]);
                 particleArray[i].update();
                 particleArray[i].show();
             }
             hue > 255 ? (hue = 0) : hue++;
             p.noStroke();
             p.pop();
+
+            console.log("particleArray",particleArray.length)
         }
     };
 };

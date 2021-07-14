@@ -459,7 +459,7 @@ let rightAttractedShapesSketch = function (p) {
                 let x = pose.keypoints[i].position.x;
                 let y = pose.keypoints[i].position.y;
                 p.colorMode(p.HSL, 255);
-                p.fill(255, 255, 100);
+                p.stroke(hue, 255, 100);
                 p.ellipse(x, y, 10, 10);
             }
 

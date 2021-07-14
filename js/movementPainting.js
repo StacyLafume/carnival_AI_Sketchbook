@@ -397,59 +397,60 @@ let rightAttractedShapesSketch = function (p) {
             if (triangle.triangle) {
                shoulders.shoulders ? p.triangle(
                     ((((pose.leftShoulder.x)) + 30) + size.size) / 1.1,
-                    (((pose.leftShoulder.y) + 75)) + size.size / 1.1,
+                    (((pose.leftShoulder.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.leftShoulder.x)) + 58)) / 1.1,
                     (((pose.leftShoulder.y) + 20)) / 1.2,
-                    ((((pose.leftShoulder.x)) + 86) + size.size) / 1.1,
-                    (((pose.leftShoulder.y) + 75) + size.size) / 1.2
+                    ((((pose.leftShoulder.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.leftShoulder.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
                 shoulders.shoulders ? p.triangle(
                     ((((pose.rightShoulder.x)) + 30) + size.size) / 1.1,
-                    (((pose.rightShoulder.y) + 75)) + size.size / 1.1,
+                    (((pose.rightShoulder.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.rightShoulder.x)) + 58)) / 1.1,
                     (((pose.rightShoulder.y) + 20)) / 1.2,
-                    ((((pose.rightShoulder.x)) + 86) + size.size) / 1.1,
-                    (((pose.rightShoulder.y) + 75) + size.size) / 1.2
+                    ((((pose.rightShoulder.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.rightShoulder.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
                 hips.hips ? p.triangle(
-                    ((((pose.leftHip.x)) + 30) + size.size) / 1.1,
-                    (((pose.leftHip.y) + 75)) + size.size / 1.1,
+                    ((((pose.leftHip.x)) + 30) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.leftHip.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.leftHip.x)) + 58)) / 1.1,
                     (((pose.leftHip.y) + 20)) / 1.2,
-                    ((((pose.leftHip.x)) + 86) + size.size) / 1.1,
-                    (((pose.leftHip.y) + 75) + size.size) / 1.2
+                    ((((pose.leftHip.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.leftHip.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
                 hips.hips ? p.triangle(
-                    ((((pose.rightHip.x)) + 30) + size.size) / 1.1,
-                    (((pose.rightHip.y) + 75)) + size.size / 1.1,
+                    ((((pose.rightHip.x)) + 30) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.rightHip.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.rightHip.x)) + 58)) / 1.1,
                     (((pose.rightHip.y) + 20)) / 1.2,
-                    ((((pose.rightHip.x)) + 86) + size.size) / 1.1,
-                    (((pose.rightHip.y) + 75) + size.size) / 1.2
+                    ((((pose.rightHip.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.rightHip.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
                 wrists.wrists ? p.triangle(
-                    ((((pose.leftWrist.x)) + 30) + size.size) / 1.1,
-                    (((pose.leftWrist.y) + 75)) + size.size / 1.1,
+                    ((((pose.leftWrist.x)) + 30) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.leftWrist.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.leftWrist.x)) + 58)) / 1.1,
                     (((pose.leftWrist.y) + 20)) / 1.2,
-                    ((((pose.leftWrist.x)) + 86) + size.size) / 1.1,
-                    (((pose.leftWrist.y) + 75) + size.size) / 1.2
+                    ((((pose.leftWrist.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.leftWrist.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
                 wrists.wrists ? p.triangle(
-                    ((((pose.rightWrist.x)) + 30) + size.size) / 1.1,
-                    (((pose.rightWrist.y) + 75)) + size.size / 1.1,
+                    ((((pose.rightWrist.x)) + 30) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.rightWrist.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.rightWrist.x)) + 58)) / 1.1,
                     (((pose.rightWrist.y) + 20)) / 1.2,
-                    ((((pose.rightWrist.x)) + 86) + size.size) / 1.1,
-                    (((pose.rightWrist.y) + 75) + size.size) / 1.2
+                    ((((pose.rightWrist.x)) + 86) + size.size+ Math.random() * 60) / 1.1,
+                    (((pose.rightWrist.y) + 75) + size.size+ Math.random() * 60) / 1.2
                 ) : null;
+
                 head.head ?   p.triangle(
-                    ((((pose.nose.x)) + 30) + size.size) / 1.1,
-                    (((pose.nose.y) + 75)) + size.size / 1.1,
+                    ((((pose.nose.x)) + 30) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.nose.y) + 75)) + size.size + Math.random() * 60 / 1.1,
                     ((((pose.nose.x)) + 58)) / 1.1,
                     (((pose.nose.y) + 20)) / 1.2,
-                    ((((pose.nose.x)) + 86) + size.size) / 1.1,
-                    (((pose.nose.y) + 75) + size.size) / 1.2
+                    ((((pose.nose.x)) + 86) + size.size + Math.random() * 60) / 1.1,
+                    (((pose.nose.y) + 75) + size.size + Math.random() * 60) / 1.2
                 ) : null ;
             }
 

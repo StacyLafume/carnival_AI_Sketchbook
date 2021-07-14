@@ -41,7 +41,7 @@ let costumeSketch = function (p) {
             let eyeL = pose.leftEye;
             let d = p.dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
             //p.fill(255, 0, 0);
-            p.ellipse(pose.nose.x, pose.nose.y, d/2);
+            //p.ellipse(pose.nose.x, pose.nose.y, d/2);
             p.fill(0, 0, 255);
             // p.ellipse(pose.rightWrist.x, pose.rightWrist.y, 32);
             // p.ellipse(pose.leftWrist.x, pose.leftWrist.y, 32);

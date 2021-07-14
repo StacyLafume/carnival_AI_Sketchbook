@@ -9,8 +9,8 @@ let leftAttractedShapesSketch = function (p) {
     let vid
     let hue = 0;
     p.interval = 2;
-    const WIDTH = window.innerWidth * (3.5/8)
-    const HEIGHT = window.innerHeight * (3.5/8) * 1.33 
+    const WIDTH = window.innerWidth * (3.5 / 8)
+    const HEIGHT = window.innerHeight * (3.5 / 8) * 1.33
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
@@ -63,20 +63,20 @@ let leftAttractedShapesSketch = function (p) {
         //image(vid, 900, 0, WIDTH,HEIGHT)
         //image(video, 0,0, WIDTH/2, HEIGHT/2)
         p.image(video, 0, 0, WIDTH, HEIGHT)
-      
+
         p.colorMode(p.HSL, 255)
         p.fill(hue, 255, 100)
-        if(pose){
-        for (let i = 0; i < skeleton.length; i++) {
-            let a = skeleton[i][0];
-            let b = skeleton[i][1];
-            p.strokeWeight(3);
-            p.colorMode(p.HSL, 255);
-            p.stroke(255);
+        if (pose) {
+            for (let i = 0; i < skeleton.length; i++) {
+                let a = skeleton[i][0];
+                let b = skeleton[i][1];
+                p.strokeWeight(3);
+                p.colorMode(p.HSL, 255);
+                p.stroke(255);
 
-            p.line(a.position.x, a.position.y, b.position.x, b.position.y);
+                p.line(a.position.x, a.position.y, b.position.x, b.position.y);
+            }
         }
-    }
     };
 };
 
@@ -93,8 +93,8 @@ let rightAttractedShapesSketch = function (p) {
     let vid
     let hue = 0;
     p.interval = 2;
-    const WIDTH = window.innerWidth * (3.5/8)
-    const HEIGHT = window.innerHeight * (3.5/8)  * 1.33 
+    const WIDTH = window.innerWidth * (3.5 / 8)
+    const HEIGHT = window.innerHeight * (3.5 / 8) * 1.33
     let attractorsArray = [];
     const particleArray = [];
     let cloudArray = [];
@@ -118,12 +118,12 @@ let rightAttractedShapesSketch = function (p) {
     // function HowMany() {
     //     this.amount = 1
     // }
-    // function Triangle() {
-    //     this.triangle = true
-    // }
-    // function Circle() {
-    //     this.circle = false
-    // }
+    function Triangle() {
+        this.triangle = true
+    }
+    function Circle() {
+        this.circle = false
+    }
 
     function Hips() {
         this.hips = false
@@ -140,8 +140,8 @@ let rightAttractedShapesSketch = function (p) {
     let gui = new dat.GUI();
     let size = new Size();
     //let colors = new Color()
-    //let triangle = new Triangle();
-    //let circle = new Circle()
+    let triangle = new Triangle();
+    let circle = new Circle()
     //let howMany = new HowMany();
     let hips = new Hips();
     let wrists = new Wrists();
@@ -149,14 +149,14 @@ let rightAttractedShapesSketch = function (p) {
     let head = new Head()
 
     const settings = gui.addFolder('Settings');
-    settings.add(size, 'size', 1,100);
+    settings.add(size, 'size', 1, 140);
     //settings.add(howMany, 'amount', 1, 100);
 
 
 
-    // const shapes = gui.addFolder('Shapes');
-    // shapes.add(triangle, 'triangle');
-    // shapes.add(circle, 'circle');
+    const shapes = gui.addFolder('Shapes');
+    shapes.add(triangle, 'triangle');
+    shapes.add(circle, 'circle');
 
     const bodyParts = gui.addFolder('Draw Body Parts');
     bodyParts.add(shoulders, 'shoulders')
@@ -274,7 +274,7 @@ let rightAttractedShapesSketch = function (p) {
         //poseNet1 = ml5.poseNet(vid, modelLoaded);
         poseNet.on("pose", gotPoses);
         //poseNet1.on("pose", gotPoses);
-       // cloudArray = []
+        // cloudArray = []
     }
 
     p.setup = function () {
@@ -319,7 +319,7 @@ let rightAttractedShapesSketch = function (p) {
             // attractorsArray.push(createVector(pose.leftHip.x, pose.leftHip.y));
 
 
-         
+
             for (let i = 0; i < skeleton.length; i++) {
                 let a = skeleton[i][0];
                 let b = skeleton[i][1];
@@ -330,7 +330,7 @@ let rightAttractedShapesSketch = function (p) {
                 p.line(a.position.x, a.position.y, b.position.x, b.position.y);
             }
 
-      
+
             // if(colors.red){
             // p.fill(255, 255, 100)
             // hips.hips ? p.circle(pose.rightHip.x, pose.rightHip.y, size.size) : null
@@ -339,26 +339,26 @@ let rightAttractedShapesSketch = function (p) {
             // p.fill(255, 255, 100)
             // wrists.wrists ? p.circle(pose.rightWrist.x, pose.rightWrist.y, size.size) : null;
             // wrists.wrists ? p.circle(pose.leftWrist.x, pose.leftWrist.y, size.size) : null;
-             
+
             // p.fill(255, 255, 100)
             // shoulders.shoulders ? p.circle(pose.leftShoulder.x, pose.leftShoulder.y, size.size) : null;
             // shoulders.shoulders ? p.circle(pose.rightShoulder.x, pose.rightShoulder.y, size.size): null;
-         
+
             // p.fill(255, 255, 100)
             // head.head ? p.circle(pose.nose.x, pose.nose.y, size.size*3) : null;
             // }else if(colors.orange){
             //     p.fill(20, 255, 100)
             //     hips.hips ? p.circle(pose.rightHip.x, pose.rightHip.y, size.size) : null
             //     hips.hips ? p.circle(pose.leftHip.x, pose.leftHip.y, size.size) : null
-    
+
             //     p.fill(20, 255, 100)
             //     wrists.wrists ? p.circle(pose.rightWrist.x, pose.rightWrist.y, size.size) : null;
             //     wrists.wrists ? p.circle(pose.leftWrist.x, pose.leftWrist.y, size.size) : null;
-                 
+
             //     p.fill(20, 255, 100)
             //     shoulders.shoulders ? p.circle(pose.leftShoulder.x, pose.leftShoulder.y, size.size) : null;
             //     shoulders.shoulders ? p.circle(pose.rightShoulder.x, pose.rightShoulder.y, size.size): null;
-             
+
             //     p.fill(20, 255, 100)
             //     head.head ? p.circle(pose.nose.x, pose.nose.y, size.size*3) : null;
             // }
@@ -377,34 +377,92 @@ let rightAttractedShapesSketch = function (p) {
             // if(colors.random){
             //     colorArray.push(hue)
             // }
-           // if (triangle.triangle){
-            p.fill(hue, 255, 100)
-            hips.hips ? p.circle(pose.rightHip.x, pose.rightHip.y, size.size) : null
-            hips.hips ? p.circle(pose.leftHip.x, pose.leftHip.y, size.size) : null
+            if (circle.circle) {
 
-            p.fill(hue, 255, 100)
-            wrists.wrists ? p.circle(pose.rightWrist.x, pose.rightWrist.y, size.size) : null;
-            wrists.wrists ? p.circle(pose.leftWrist.x, pose.leftWrist.y, size.size) : null;
-             
-            p.fill(hue, 255, 100)
-            shoulders.shoulders ? p.circle(pose.leftShoulder.x, pose.leftShoulder.y, size.size) : null;
-            shoulders.shoulders ? p.circle(pose.rightShoulder.x, pose.rightShoulder.y, size.size): null;
+                p.fill(hue, 255, 100)
+                hips.hips ? p.circle(pose.rightHip.x, pose.rightHip.y, size.size) : null
+                hips.hips ? p.circle(pose.leftHip.x, pose.leftHip.y, size.size) : null
 
-           // p.triangle((((pose.leftShoulder.x)) +60) * size.size, ((pose.leftShoulder.y) +  150) / 4 * size.size, (((pose.leftShoulder.x)) + 116) * size.size, ((pose.leftShoulder.y) + 40) / 4 * size.size,(((pose.leftShoulder.x)) + 172) * size.size, ((pose.leftShoulder.y)+150) / 4 * size.size)
-         
-            p.fill(hue, 255, 100)
-            head.head ? p.circle(pose.nose.x, pose.nose.y, size.size*3) : null;
-            //}
-        
+                p.fill(hue, 255, 100)
+                wrists.wrists ? p.circle(pose.rightWrist.x, pose.rightWrist.y, size.size) : null;
+                wrists.wrists ? p.circle(pose.leftWrist.x, pose.leftWrist.y, size.size) : null;
+
+                p.fill(hue, 255, 100)
+                shoulders.shoulders ? p.circle(pose.leftShoulder.x, pose.leftShoulder.y, size.size) : null;
+                shoulders.shoulders ? p.circle(pose.rightShoulder.x, pose.rightShoulder.y, size.size) : null;
+
+                p.fill(hue, 255, 100)
+                head.head ? p.circle(pose.nose.x, pose.nose.y, size.size * 3) : null;
+            }
+            if (triangle.triangle) {
+               shoulders.shoulders ? p.triangle(
+                    ((((pose.leftShoulder.x)) + 30) + size.size) / 1.1,
+                    (((pose.leftShoulder.y) + 75)) + size.size / 1.1,
+                    ((((pose.leftShoulder.x)) + 58)) / 1.1,
+                    (((pose.leftShoulder.y) + 20)) / 1.2,
+                    ((((pose.leftShoulder.x)) + 86) + size.size) / 1.1,
+                    (((pose.leftShoulder.y) + 75) + size.size) / 1.2
+                ) : null;
+                shoulders.shoulders ? p.triangle(
+                    ((((pose.rightShoulder.x)) + 30) + size.size) / 1.1,
+                    (((pose.rightShoulder.y) + 75)) + size.size / 1.1,
+                    ((((pose.rightShoulder.x)) + 58)) / 1.1,
+                    (((pose.rightShoulder.y) + 20)) / 1.2,
+                    ((((pose.rightShoulder.x)) + 86) + size.size) / 1.1,
+                    (((pose.rightShoulder.y) + 75) + size.size) / 1.2
+                ) : null;
+                hips.hips ? p.triangle(
+                    ((((pose.leftHip.x)) + 30) + size.size) / 1.1,
+                    (((pose.leftHip.y) + 75)) + size.size / 1.1,
+                    ((((pose.leftHip.x)) + 58)) / 1.1,
+                    (((pose.leftHip.y) + 20)) / 1.2,
+                    ((((pose.leftHip.x)) + 86) + size.size) / 1.1,
+                    (((pose.leftHip.y) + 75) + size.size) / 1.2
+                ) : null;
+                hips.hips ? p.triangle(
+                    ((((pose.rightHip.x)) + 30) + size.size) / 1.1,
+                    (((pose.rightHip.y) + 75)) + size.size / 1.1,
+                    ((((pose.rightHip.x)) + 58)) / 1.1,
+                    (((pose.rightHip.y) + 20)) / 1.2,
+                    ((((pose.rightHip.x)) + 86) + size.size) / 1.1,
+                    (((pose.rightHip.y) + 75) + size.size) / 1.2
+                ) : null;
+                wrists.wrists ? p.triangle(
+                    ((((pose.leftWrist.x)) + 30) + size.size) / 1.1,
+                    (((pose.leftWrist.y) + 75)) + size.size / 1.1,
+                    ((((pose.leftWrist.x)) + 58)) / 1.1,
+                    (((pose.leftWrist.y) + 20)) / 1.2,
+                    ((((pose.leftWrist.x)) + 86) + size.size) / 1.1,
+                    (((pose.leftWrist.y) + 75) + size.size) / 1.2
+                ) : null;
+                wrists.wrists ? p.triangle(
+                    ((((pose.rightWrist.x)) + 30) + size.size) / 1.1,
+                    (((pose.rightWrist.y) + 75)) + size.size / 1.1,
+                    ((((pose.rightWrist.x)) + 58)) / 1.1,
+                    (((pose.rightWrist.y) + 20)) / 1.2,
+                    ((((pose.rightWrist.x)) + 86) + size.size) / 1.1,
+                    (((pose.rightWrist.y) + 75) + size.size) / 1.2
+                ) : null;
+                head.head ?   p.triangle(
+                    ((((pose.nose.x)) + 30) + size.size) / 1.1,
+                    (((pose.nose.y) + 75)) + size.size / 1.1,
+                    ((((pose.nose.x)) + 58)) / 1.1,
+                    (((pose.nose.y) + 20)) / 1.2,
+                    ((((pose.nose.x)) + 86) + size.size) / 1.1,
+                    (((pose.nose.y) + 75) + size.size) / 1.2
+                ) : null ;
+            }
+
+
             for (let i = 0; i < pose.keypoints.length; i++) {
                 let x = pose.keypoints[i].position.x;
                 let y = pose.keypoints[i].position.y;
                 p.colorMode(p.HSL, 255);
                 p.fill(255, 255, 100);
-                p.ellipse(x, y, 10 , 10);
+                p.ellipse(x, y, 10, 10);
             }
 
-          
+
 
             // if (p.frameCount % (p.interval * 60) === 0) {
             //     //particleArray.push(new Particle(random(width), random(height), hue));

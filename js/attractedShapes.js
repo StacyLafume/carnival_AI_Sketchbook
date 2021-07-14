@@ -59,6 +59,12 @@ let AttractedShapesSketch = function (p) {
     function Head() {
         this.head = false
     }
+    function Knees() {
+        this.knees = false
+    }
+    function Ankles() {
+        this.ankles = false
+    }
     let gui = new dat.GUI();
     let size = new Size();
     let colors = new Color()
@@ -69,6 +75,8 @@ let AttractedShapesSketch = function (p) {
     let wrists = new Wrists();
     let shoulders = new Shoulders()
     let head = new Head()
+    let knees = new Knees()
+    let ankles = new Ankles()
 
     const settings = gui.addFolder('Settings');
     settings.add(size, 'size', 1, 5);
@@ -85,6 +93,8 @@ let AttractedShapesSketch = function (p) {
     bodyParts.add(hips, 'hips');
     bodyParts.add(wrists, 'wrists');
     bodyParts.add(head, 'head');
+    bodyParts.add(knees, 'knees');
+    bodyParts.add(ankles, 'ankles');
 
     const color = gui.addFolder('Colors');
     color.add(colors, 'red');
@@ -134,7 +144,7 @@ let AttractedShapesSketch = function (p) {
             p.push();
             p.translate(this.pos.x, this.pos.y);
             p.rotate(this.vel.heading());
-            circle.circle ? p.circle(-this.r, -this.r / 2, Math.random() * 60 * size.size) : null
+            circle.circle ? p.circle(-this.r, -this.r / 2,size.size * 10) : null
             triangle.triangle ? p.triangle(-this.r * size.size, -this.r / 4 * size.size, -this.r * size.size, this.r / 4 * size.size, this.r * size.size, 0) : null;
             p.pop();
         }
@@ -261,6 +271,10 @@ let AttractedShapesSketch = function (p) {
             head.head ? attractorsArray.push(p.createVector(pose.leftEye.x, pose.leftEye.y)) : null;
             head.head ? attractorsArray.push(p.createVector(pose.rightEye.x, pose.rightEye.y)) : null;
             head.head ? attractorsArray.push(p.createVector(pose.nose.x, pose.nose.y)) : null;
+            knees.knees ? attractorsArray.push(p.createVector(pose.leftKnee.x, pose.leftKnee.y)) : null;
+            knees.knees ? attractorsArray.push(p.createVector(pose.rightKnee.x, pose.rightKnee.y)) : null;
+            ankles.ankles ? attractorsArray.push(p.createVector(pose.leftAnkle.x, pose.leftAnkle.y)) : null;
+            ankles.ankles ? attractorsArray.push(p.createVector(pose.rightAnkle.x, pose.rightAnkle.y)) : null;
 
 
             for (let i = 0; i < pose.keypoints.length; i++) {

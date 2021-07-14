@@ -392,7 +392,7 @@ let rightAttractedShapesSketch = function (p) {
                 shoulders.shoulders ? p.circle(pose.rightShoulder.x, pose.rightShoulder.y, size.size) : null;
 
                 p.fill(hue, 255, 100)
-                head.head ? p.circle(pose.nose.x, pose.nose.y, size.size * 3) : null;
+                head.head ? p.circle(pose.nose.x, pose.nose.y, size.size * 2) : null;
             }
             if (triangle.triangle) {
                shoulders.shoulders ? p.triangle(
@@ -459,7 +459,9 @@ let rightAttractedShapesSketch = function (p) {
                 let x = pose.keypoints[i].position.x;
                 let y = pose.keypoints[i].position.y;
                 p.colorMode(p.HSL, 255);
-                p.stroke(hue, 255, 100);
+                p.noStroke()
+                p.noFill()
+                //p.stroke(hue, 255, 100);
                 p.ellipse(x, y, 10, 10);
             }
 

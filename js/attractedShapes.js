@@ -201,9 +201,10 @@ let AttractedShapesSketch = function (p) {
     }
 
     function resetSketch() {
-        //vid.size(WIDTH, HEIGHT);
-        // cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
-        video = p.createCapture(p.VIDEO);
+        
+        vid.size(WIDTH, HEIGHT);
+        //cloud = new Cloud(p.random(p.width), p.random(p.height), 1, 100);
+        video = p.createCapture(p.VIDEO)//;
         video.size(WIDTH, HEIGHT);
         video.hide();
         poseNet = ml5.poseNet(video, modelLoaded);
@@ -211,14 +212,20 @@ let AttractedShapesSketch = function (p) {
         poseNet.on("pose", gotPoses);
         //poseNet1.on("pose", gotPoses);
         //cloudArray = []
+       
     }
 
     p.setup = function () {
         let canvas = p.createCanvas(WIDTH, HEIGHT);
         canvas.parent('middle');
-        //vid = createVideo('valenciasDanceMoves/waverag.MOV',
-        // vidLoad
-        //z);
+        vid = p.createVideo('/videos/adele/slowWine.mp4',
+         vidLoad
+        );
+        function vidLoad() {
+            vid.loop();
+            vid.volume(0);
+          }
+        
         resetSketch()
 
         //let resetButton = p.createButton("reset")
@@ -246,8 +253,9 @@ let AttractedShapesSketch = function (p) {
             p.push();
             p.translate(p.width, 0);
             p.scale(-1, 1);
-            //image(vid, 900, 0, WIDTH,HEIGHT)
+            //p.image(vid, 900, 0, WIDTH,HEIGHT)
             //image(video, 0,0, WIDTH/2, HEIGHT/2)
+       
             p.image(video, 0, 0, WIDTH, HEIGHT)
             p.colorMode(p.HSL, 255)
             p.fill(hue, 255, 100)

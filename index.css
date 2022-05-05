@@ -1,0 +1,142 @@
+:root {
+  --theme-bg-color: rgba(16 18 27 / 40%);
+  --border-color: rgba(113 119 144 / 25%);
+  --theme-color: #f9fafb;
+  --inactive-color: rgb(113 119 144 / 78%);
+  --body-font: "Poppins", sans-serif;
+  --hover-menu-bg: rgba(12 15 25 / 30%);
+  --content-title-color: #999ba5;
+  --content-bg: rgb(146 151 179 / 13%);
+  --button-inactive: rgb(249 250 251 / 55%);
+  --dropdown-bg: #21242d;
+  --dropdown-hover: rgb(42 46 60);
+  --popup-bg: rgb(22 25 37);
+  --search-bg: #14162b;
+  --overlay-bg: rgba(36, 39, 59, 0.3);
+  --scrollbar-bg: rgb(1 2 3 / 40%);
+}
+
+.colorBorder {
+  --borderWidth: -11px;
+  background: rgb(144 63 81);
+  position: relative;
+  border-radius: 50px;
+  /* display: flex; */
+  padding: 2%; /* margin: 0px; */
+  /* padding: 0px !important; */
+}
+.colorBorder::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+      60deg,
+      rgb(247, 149, 51),
+      rgb(243, 112, 85),
+      rgb(239, 78, 123),
+      rgb(161, 102, 171),
+      rgb(80, 115, 184),
+      rgb(16, 152, 173),
+      rgb(7, 179, 155),
+      rgb(111, 186, 130)
+    )
+    0% 0% / 300% 300%;
+  border-radius: 50px;
+  z-index: -1;
+  animation: 20s ease 0s infinite alternate none running animatedgradient;
+}
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.app {
+  background-color: var(--theme-bg-color);
+  /* max-width: 1250px; */
+  /* max-height: 867px; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 15px;
+  font-weight: 500;
+}
+.app2 {
+  background-color: var(--theme-bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 19px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+h1.jumbotron-heading {
+  color: aquamarine;
+}
+p.lead.text-muted {
+  color: white !important;
+}
+
+section.jumbotron.text-center {
+  background: transparent;
+  /* backdrop-filter: blur(20px); */
+  margin-bottom: 10px;
+}
+.col-md-6 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* align-items: center; */
+  /* flex-direction: column; */
+}
+.card.mb-4.box-shadow.app {
+  padding: 1.5rem; /* border-radius: 30px; */ /* overflow: hidden; */ /* border: 3px solid; */
+}
+
+.card-body {
+  background: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.album.py-5 {
+  padding-top: 0px !important;
+}
+
+.card.mb-4.box-shadow a {
+  border-top-left-radius: 12px;
+  overflow: hidden;
+  border-top-right-radius: 12px;
+  height: 420px;
+}
+body {
+  background: #eb8979;
+}

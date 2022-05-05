@@ -1,0 +1,302 @@
+:root {
+  --theme-bg-color: rgba(16 18 27 / 40%);
+  --border-color: rgba(113 119 144 / 25%);
+  --theme-color: #f9fafb;
+  --inactive-color: rgb(113 119 144 / 78%);
+  --body-font: "Poppins", sans-serif;
+  --hover-menu-bg: rgba(12 15 25 / 30%);
+  --content-title-color: #999ba5;
+  --content-bg: rgb(146 151 179 / 13%);
+  --button-inactive: rgb(249 250 251 / 55%);
+  --dropdown-bg: #21242d;
+  --dropdown-hover: rgb(42 46 60);
+  --popup-bg: rgb(22 25 37);
+  --search-bg: #14162b;
+  --overlay-bg: rgba(36, 39, 59, 0.3);
+  --scrollbar-bg: rgb(1 2 3 / 40%);
+}
+.light-mode {
+  --theme-bg-color: rgb(255 255 255 / 31%);
+  --theme-color: #3c3a3a;
+  --inactive-color: #333333;
+  --button-inactive: #3c3a3a;
+  --search-bg: rgb(255 255 255 / 31%);
+  --dropdown-bg: #f7f7f7;
+  --overlay-bg: rgb(255 255 255 / 30%);
+  --dropdown-hover: rgb(236 236 236);
+  --border-color: rgb(255 255 255 / 35%);
+  --popup-bg: rgb(255 255 255);
+  --hover-menu-bg: rgba(255 255 255 / 35%);
+  --scrollbar-bg: rgb(255 253 253 / 57%);
+  --content-title-color: --theme-color;
+}
+body {
+}
+.dg.ac {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 711px !important;
+  right: 0px !important;
+  left: initial !important;
+  width: 100% !important;
+  top: initial !important;
+  position: relative !important;
+}
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+h2 {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+}
+#defaultCanvas0 {
+  border-radius: 50px !important;
+  width: 984px !important;
+  height: 750px !important;
+}
+.container {
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: none !important;
+  width: 70% !important;
+}
+.row .col + .col {
+  padding: 0px;
+}
+.mainContentMiddle {
+  display: flex;
+  margin: auto;
+  width: 1758px;
+  position: relative;
+  gap: 5%;
+}
+.container {
+  --borderWidth: -10px;
+  background: rgb(29, 31, 32);
+  position: relative;
+  border-radius: 50px;
+  height: 785px;
+  display: flex;
+  margin: 0px;
+  padding: 0px !important;
+  width: 60% !important;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+      60deg,
+      rgb(247, 149, 51),
+      rgb(243, 112, 85),
+      rgb(239, 78, 123),
+      rgb(161, 102, 171),
+      rgb(80, 115, 184),
+      rgb(16, 152, 173),
+      rgb(7, 179, 155),
+      rgb(111, 186, 130)
+    )
+    0% 0% / 300% 300%;
+  border-radius: 50px;
+  z-index: -1;
+  animation: 3s ease 0s infinite alternate none running animatedgradient;
+}
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.left {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 786px !important;
+}
+.dg.ac {
+  width: 100%;
+}
+.topImage {
+  background-image: url("/images/movementPainting.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.topImage,
+.middleImage,
+.bottomImage {
+  height: 180px;
+  width: 198px;
+  border-radius: 15px;
+}
+.middleImage {
+  background-image: url("/images/attractedShapes.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.top,
+.middle,
+.bottom {
+  text-align: center;
+  cursor: pointer;
+}
+.bottomImage {
+  background-image: url("/images/digitalCostume.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.dg.ac li {
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.016) !important;
+}
+.dg.ac li li:hover {
+  background-color: rgba(177, 177, 177, 0.42) !important;
+}
+.dg li:not(.folder) {
+  border: none !important;
+}
+.dg.main.a {
+  width: 90% !important;
+  margin: 0px !important;
+}
+.close-button {
+  font-size: 15px;
+  width: 90% !important;
+  background: rgba(0, 0, 0, 0.035) !important;
+}
+h2 {
+  color: white;
+}
+h2 a {
+  width: 25%;
+  color: white;
+}
+h2 p {
+  margin: 0px auto 0px 0px;
+  width: 50%;
+}
+img.bgBack {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+}
+.app {
+  background-color: var(--theme-bg-color);
+  max-width: 1250px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  font-size: 15px;
+  font-weight: 500;
+}
+.mainContent {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.dg.ac {
+  height: 100%;
+}
+.dg.main.a {
+  height: 90%;
+}
+.dg.main ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100% !important;
+}
+.title {
+}
+.cr {
+  padding-left: 20px !important;
+}
+.app2 {
+  background-color: var(--theme-bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  padding: 19px;
+  place-content: center;
+  align-items: center;
+}
+.text-shadow {
+  text-shadow: black 6px 7px 10px;
+}
+.text-shadow2 {
+  text-shadow: black 6px 7px 15px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  place-content: center;
+  margin: 0px !important;
+}
+.dg.ac {
+}
+div#leftCanvas {
+  width: initial !important;
+  min-height: initial !important;
+  padding: 0px !important;
+}
+div#rightCanvas {
+  width: initial !important;
+  min-height: initial !important;
+  padding: 0px !important;
+}
+canvas#defaultCanvas1 {
+  border-radius: 50px !important;
+  width: 1016px !important;
+  height: 375px !important;
+}
+div#middle {
+  display: flex;
+}
+.mainCenter {
+  width: 1700px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 5%;
+  margin: auto;
+}

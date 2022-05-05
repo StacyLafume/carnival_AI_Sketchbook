@@ -81,12 +81,12 @@ let AttractedShapesSketch = function (p) {
     const settings = gui.addFolder('Settings');
     settings.add(size, 'size', 1, 5);
     settings.add(howMany, 'amount', 1, 100);
-
-
+    settings.open()
 
     const shapes = gui.addFolder('Shapes');
     shapes.add(triangle, 'triangle');
     shapes.add(circle, 'circle');
+    shapes.open()
 
     const bodyParts = gui.addFolder('Attracted Body Parts');
     bodyParts.add(shoulders, 'shoulders')
@@ -95,6 +95,7 @@ let AttractedShapesSketch = function (p) {
     bodyParts.add(head, 'head');
     bodyParts.add(knees, 'knees');
     bodyParts.add(ankles, 'ankles');
+    bodyParts.open()
 
     const color = gui.addFolder('Colors');
     color.add(colors, 'red');
@@ -104,6 +105,7 @@ let AttractedShapesSketch = function (p) {
     color.add(colors, 'blue');
     color.add(colors, 'purple');
     color.add(colors, 'random');
+    color.open()
 
     class Particle {
 

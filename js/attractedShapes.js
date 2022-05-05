@@ -173,7 +173,7 @@ let AttractedShapesSketch = function (p) {
 
   function resetSketch() {
     vid.size(WIDTH, HEIGHT);
-    video = p.createCapture(p.VIDEO); //;
+    video = p.createCapture(p.VIDEO);
     video.size(WIDTH, HEIGHT);
     video.hide();
     poseNet = ml5.poseNet(video, modelLoaded);
@@ -339,8 +339,6 @@ let AttractedShapesSketch = function (p) {
       hue > 255 ? (hue = 0) : hue++;
       p.noStroke();
       p.pop();
-
-      console.log("particleArray", particleArray.length);
     }
   };
 };

@@ -198,7 +198,6 @@ let AttractedShapesSketch = function (p) {
     let int = Math.ceil(howMany.amount);
     p.strokeWeight(0);
     p.stroke(51);
-
     if (pose) {
       let eyeR = pose.rightEye;
       let eyeL = pose.leftEye;

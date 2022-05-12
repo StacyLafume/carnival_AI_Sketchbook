@@ -1,4 +1,4 @@
-let leftAttractedShapesSketch = function (p) {
+let movementPainting1 = function (p) {
   let video;
   let poseNet;
   let pose;
@@ -53,9 +53,9 @@ let leftAttractedShapesSketch = function (p) {
   };
 };
 
-let leftP5 = new p5(leftAttractedShapesSketch);
+let leftP5 = new p5(movementPainting1);
 
-let rightAttractedShapesSketch = function (p) {
+let movementPainting2 = function (p) {
   let video;
   let poseNet;
   let pose;
@@ -370,4 +370,4 @@ let rightAttractedShapesSketch = function (p) {
   };
 };
 
-let rightP5 = new p5(rightAttractedShapesSketch);
+let rightP5 = new p5(movementPainting2);

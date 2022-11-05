@@ -60,6 +60,8 @@ let movementPainting2 = function (p) {
   let poseNet;
   let pose;
   let hue = 0;
+  let clearButton;
+  let saveButton;
   p.interval = 2;
   const WIDTH = window.innerWidth * (3.5 / 8);
   const HEIGHT = window.innerHeight * (3.5 / 8) * 1.33;
@@ -80,9 +82,8 @@ let movementPainting2 = function (p) {
   function Size() {
     this.size = 1;
   }
-
   function HowMany() {
-    this.amount = 1;
+    this.amount = 2;
   }
   function Triangle() {
     this.triangle = true;
@@ -90,18 +91,17 @@ let movementPainting2 = function (p) {
   function Circle() {
     this.circle = false;
   }
-
   function Hips() {
     this.hips = false;
   }
   function Wrists() {
-    this.wrists = true;
+    this.wrists = false;
   }
   function Shoulders() {
     this.shoulders = false;
   }
   function Head() {
-    this.head = false;
+    this.head = true;
   }
   function Knees() {
     this.knees = false;
@@ -109,6 +109,7 @@ let movementPainting2 = function (p) {
   function Ankles() {
     this.ankles = false;
   }
+
   let gui = new dat.GUI();
   let size = new Size();
   let colors = new Color();
@@ -239,9 +240,21 @@ let movementPainting2 = function (p) {
 
     resetSketch();
     p.background(255);
+    clearButton = p.createButton("clear");
+    clearButton.mousePressed(clearCanvas);
+    clearButton.addClass("app2");
+    saveButton = p.createButton("save");
+    saveButton.mousePressed(save);
+    saveButton.addClass("app2");
   };
 
+  function clearCanvas() {
+    p.background(255, 255, 255);
+  }
   
+  function save() {
+    p.save("myArt.png");
+  }
 
   p.draw = function () {
     let int = Math.ceil(howMany.amount);
@@ -315,7 +328,6 @@ let movementPainting2 = function (p) {
             p.createVector(pose.rightAnkle.x, pose.rightAnkle.y)
           )
         : null;
-
 
       if (p.frameCount % (p.interval * 60) === 0) {
         const newParticleCount = int - particleArray.length;

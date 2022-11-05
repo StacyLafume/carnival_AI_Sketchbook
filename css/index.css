@@ -25,6 +25,9 @@
   padding: 2%; /* margin: 0px; */
   /* padding: 0px !important; */
 }
+img.card-img-top{
+  border: 4mm ridge rgba(0, 255, 213, 0.411);
+}
 .colorBorder::after {
   content: "";
   position: absolute;
@@ -73,7 +76,7 @@
 
 .app {
   background-color: var(--theme-bg-color);
-  /* max-width: 1250px; */
+  max-width: 100%;
   /* max-height: 867px; */
   display: flex;
   flex-direction: column;
@@ -122,7 +125,7 @@ section.jumbotron.text-center {
 }
 
 .card-body {
-  background: white;
+  color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
@@ -136,7 +139,11 @@ section.jumbotron.text-center {
   overflow: hidden;
   border-top-right-radius: 12px;
   height: 420px;
+  color: white
 }
 body {
   background: #eb8979;
 }
+/* .container{
+  max-width: 90%;
+} */

@@ -6,6 +6,7 @@ let AttractedShapesSketch = function (p) {
   let vid;
   let hue = 0;
   p.interval = 2;
+  let saveButton
   const WIDTH = window.innerWidth * (5 / 8);
   const HEIGHT = window.innerHeight * (5 / 8) * 1.33;
   let attractorsArray = [];
@@ -27,7 +28,7 @@ let AttractedShapesSketch = function (p) {
   }
 
   function HowMany() {
-    this.amount = 1;
+    this.amount = 2;
   }
   function Triangle() {
     this.triangle = true;
@@ -39,13 +40,13 @@ let AttractedShapesSketch = function (p) {
     this.hips = false;
   }
   function Wrists() {
-    this.wrists = true;
+    this.wrists = false;
   }
   function Shoulders() {
     this.shoulders = false;
   }
   function Head() {
-    this.head = false;
+    this.head = true;
   }
   function Knees() {
     this.knees = false;
@@ -192,7 +193,14 @@ let AttractedShapesSketch = function (p) {
     resetSketch();
 
     p.background(50);
+    saveButton = p.createButton("save");
+    saveButton.mousePressed(save);
+    saveButton.addClass("app2");
   };
+  
+  function save() {
+    p.save("myArt.png");
+  }
 
   p.draw = function () {
     let int = Math.ceil(howMany.amount);

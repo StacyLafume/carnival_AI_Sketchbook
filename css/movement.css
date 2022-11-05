@@ -320,3 +320,12 @@ canvas#defaultCanvas1 {
   width: 1016px !important;
   height: 375px !important;
 }
+
+button.app2 {
+  color: white;
+  margin: 0.5%;
+  height: 56px;
+  border-radius: 15px;
+  border: none;
+  text-shadow: -1px 2px 2px #1d2124;
+}

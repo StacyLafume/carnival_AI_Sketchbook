@@ -31,9 +31,9 @@
   --scrollbar-bg: rgb(255 253 253 / 57%);
   --content-title-color: --theme-color;
 }
-body{
-    height: 1000px !important;
-    overflow: hidden !important;
+body {
+  height: 1000px !important;
+  overflow: hidden !important;
 }
 .dg.ac {
   display: flex;
@@ -51,7 +51,9 @@ body{
 body {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  flex-direction: row;
+  align-items: stretch;
+  align-content: flex-start;
 }
 
 h2 {
@@ -73,8 +75,8 @@ h2 {
   padding: 0;
   width: 65% !important;
 }
-.row .col+.col{
-    padding: 0;
+.row .col + .col {
+  padding: 0;
 }
 .mainContentMiddle {
   display: flex;
@@ -206,8 +208,8 @@ h2 {
   font-size: 15px;
   background: rgba(0, 0, 0, 0.036) !important;
 }
-h2{
-    color: white;
+h2 {
+  color: white;
 }
 
 h2 a {
@@ -259,28 +261,38 @@ img.bgBack {
   flex-direction: column;
   justify-content: space-around;
 }
-.title{
-    padding-left: 10 !important;
+.title {
+  padding-left: 10 !important;
 }
-.cr{
-    padding-left: 20px !important;
+.cr {
+  padding-left: 20px !important;
 }
 .app2 {
-    background-color: var(--theme-bg-color);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 14px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 19px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  background-color: var(--theme-bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 19px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
-.text-shadow{
-    text-shadow: 6px 7px 10px black;
+.text-shadow {
+  text-shadow: 6px 7px 10px black;
 }
-.text-shadow2{
-    text-shadow: 6px 7px 15px black;
+.text-shadow2 {
+  text-shadow: 6px 7px 15px black;
+}
+
+button.app2 {
+  color: white;
+  margin: 0.5%;
+  height: 56px;
+  width: 26%;
+  border-radius: 15px;
+  border: none;
+  text-shadow: -1px 2px 2px #1d2124;
 }

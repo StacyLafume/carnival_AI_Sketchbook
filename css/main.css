@@ -11,3 +11,7 @@ p {
     font-weight: 300;
     margin-bottom: 1rem;
 }
+
+main {
+    backdrop-filter: blur(20px);
+}

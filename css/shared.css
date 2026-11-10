@@ -1,0 +1,590 @@
+:root {
+  --theme-bg-color: rgba(16, 18, 27, 0.72);
+  --theme-color: #f9fafb;
+  --border-color: rgba(113, 119, 144, 0.35);
+  --accent-color: aquamarine;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #eb8979;
+  color: var(--theme-color);
+  font-family: "cofo-gothic-variable", sans-serif;
+}
+
+body,
+main {
+  max-width: 100%;
+}
+
+img.bgBack {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "bd-geminis", sans-serif;
+  font-weight: 300;
+}
+
+p,
+span,
+a {
+  font-family: "cofo-gothic-variable", sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: rgb(0, 242, 255);
+}
+
+.site-nav {
+  position: fixed;
+  z-index: 1000;
+  inset: 0 0 auto;
+  width: 100%;
+  padding: 0.4rem clamp(0.5rem, 3vw, 2rem);
+  background: rgba(35, 35, 40, 0.94);
+  box-shadow: 0 1rem 15px #0046ff24;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.site-nav .nav-ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem clamp(0.25rem, 2vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: transparent;
+}
+
+.site-nav .nav-li {
+  display: block;
+  padding: 0.55rem 0.7rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+}
+
+.home-page main {
+  padding-top: 4.5rem;
+}
+
+.home-page .jumbotron {
+  margin: 0;
+  padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem) 1rem;
+  background: transparent;
+}
+
+.home-page .jumbotron .container.app {
+  width: min(100%, 1200px);
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  overflow: visible;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: var(--theme-bg-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.home-page h1.jumbotron-heading {
+  padding-top: 0;
+  color: var(--accent-color);
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  line-height: 1.05;
+}
+
+.home-page p.lead.text-muted {
+  margin: 1rem 0 0;
+  color: white !important;
+  font-size: clamp(1rem, 1.7vw, 1.3rem) !important;
+  line-height: 1.65;
+}
+
+.home-page .album.py-5 {
+  padding: 1rem clamp(1rem, 4vw, 3.5rem) 3rem !important;
+}
+
+.home-page .album > .container,
+.home-page .album > div {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.home-page .album .row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.home-page .album .row > .col-md-3 {
+  display: block;
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+}
+
+.home-page .card.mb-4.box-shadow.app {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  background: var(--theme-bg-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.home-page .home-card-link {
+  display: block;
+  height: 100%;
+}
+
+.home-page .home-card-link:hover {
+  text-decoration: none;
+}
+
+.home-page .card-header {
+  margin: 0 0 0.9rem;
+  padding: 0.4rem 0;
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: clamp(1.2rem, 1.9vw, 1.7rem);
+  line-height: 1.2;
+  text-align: left;
+}
+
+.home-page .card-body {
+  gap: 0.9rem;
+  color: white;
+}
+
+.home-page .card-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  border: 3px solid rgba(0, 255, 213, 0.45);
+  border-radius: 12px;
+}
+
+.home-page .card-text {
+  margin: 0;
+  color: white;
+  font-size: 1rem !important;
+  line-height: 1.55;
+}
+
+.content-page {
+  min-height: 100vh;
+  padding: 5.5rem clamp(1rem, 4vw, 3rem) 2rem;
+}
+
+.content-page .jumbotron {
+  margin: 0;
+  padding: 1rem 0 2rem;
+  background: transparent;
+}
+
+.content-page .missionMain.app {
+  display: block;
+  width: min(100%, 1200px);
+  height: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  overflow: visible;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: var(--theme-bg-color);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.content-page .missionMain h2 {
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  color: var(--accent-color);
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  line-height: 1.15;
+  text-align: left !important;
+}
+
+.content-page .missionMain p,
+.content-page .missionMain a {
+  color: white;
+  font-size: clamp(1rem, 1.8vw, 1.3rem) !important;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.content-page .missionGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  margin-top: 1.5rem;
+}
+
+.content-page .missonImg {
+  flex: 0 1 40%;
+  width: min(40%, 420px);
+  height: auto;
+  max-height: 620px;
+  margin: 0;
+  border: 4px solid rgba(0, 255, 213, 0.45);
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.content-page .mission-text {
+  flex: 1;
+  margin: 0;
+  color: white !important;
+}
+
+.content-page .album.py-5 {
+  padding: 1rem 0 0 !important;
+}
+
+.content-page .album .row {
+  display: block;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.content-page .album .row h2 {
+  margin-top: 1.5rem;
+}
+
+.content-page .album .row p {
+  margin-bottom: 1.25rem;
+}
+
+.sketch-page {
+  display: block !important;
+  min-height: 100vh;
+  height: auto !important;
+  padding: 5.75rem clamp(1rem, 3vw, 2rem) 2rem;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.sketch-page > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: min(100%, 1500px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--theme-bg-color);
+  text-align: left !important;
+}
+
+.sketch-page > h2 a {
+  width: auto;
+  flex: 0 0 auto;
+  color: white;
+  font-size: 1.3rem !important;
+}
+
+.sketch-page > h2 p {
+  width: auto;
+  margin: 0;
+  font-family: "bd-geminis", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+}
+
+.sketch-page .mainContentMiddle,
+.sketch-page .mainCenter {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.8fr) minmax(0, 4fr);
+  align-items: stretch;
+  gap: 1.25rem;
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  position: relative;
+}
+
+.sketch-page .left.app {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  gap: 0.75rem;
+  width: auto !important;
+  height: auto !important;
+  max-width: none;
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--theme-bg-color);
+}
+
+.sketch-page .left.app > div {
+  min-width: 0;
+  text-align: center;
+}
+
+.sketch-page .left.app label {
+  display: block;
+  margin: 0.4rem 0 0;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.sketch-page .topImage,
+.sketch-page .middleImage,
+.sketch-page .bottomImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.2;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+}
+
+.sketch-page .middleImage {
+  background-image: url("/images/miniDancer.png");
+}
+
+.sketch-page .container.app2 {
+  display: block;
+  width: auto !important;
+  min-width: 0;
+  min-height: min(70vh, 760px);
+  height: auto;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: clamp(0.75rem, 2vw, 1.5rem) !important;
+  overflow: visible;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--theme-bg-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.sketch-page .container.app2 > .row {
+  display: block;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.sketch-page .container.app2 .col,
+.sketch-page #middle,
+.sketch-page #leftCanvas,
+.sketch-page #rightCanvas {
+  width: 100% !important;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 0 !important;
+}
+
+.sketch-page #middle,
+.sketch-page #leftCanvas,
+.sketch-page #rightCanvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  border-radius: 14px;
+}
+
+.sketch-page .mainContent {
+  display: block;
+  grid-column: 1 / -1;
+  width: 100% !important;
+  min-width: 0;
+  margin: 1rem 0 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.sketch-page .container.app2 > .mainContent {
+  margin-top: 1rem;
+}
+
+.sketch-page .row.app2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1rem;
+  width: 100% !important;
+  padding: clamp(0.75rem, 2vw, 1.5rem) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--theme-bg-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.sketch-page canvas#defaultCanvas0,
+.sketch-page canvas#defaultCanvas1 {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  border-radius: 14px !important;
+}
+
+.sketch-page .dg.ac {
+  position: relative !important;
+  inset: auto !important;
+  display: flex;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+
+.sketch-page .dg.main.a,
+.sketch-page .dg.main ul {
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.sketch-page .dg.main ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sketch-page button.app2 {
+  min-width: 88px;
+  min-height: 44px;
+  width: auto;
+  margin: 0.35rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: rgba(16, 18, 27, 0.82);
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .home-page .album .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sketch-page .mainContentMiddle,
+  .sketch-page .mainCenter {
+    grid-template-columns: 1fr;
+  }
+
+  .sketch-page .left.app {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sketch-page .left.app > div {
+    flex: 1 1 130px;
+    max-width: 220px;
+  }
+
+  .sketch-page .topImage,
+  .sketch-page .middleImage,
+  .sketch-page .bottomImage {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 650px) {
+  .site-nav {
+    padding: 0.3rem 0.4rem;
+  }
+
+  .site-nav .nav-ul {
+    gap: 0;
+  }
+
+  .site-nav .nav-li {
+    padding: 0.5rem 0.45rem;
+    font-size: 0.85rem;
+  }
+
+  .home-page main {
+    padding-top: 4rem;
+  }
+
+  .home-page .album .row {
+    grid-template-columns: 1fr;
+  }
+
+  .content-page {
+    padding-top: 5rem;
+  }
+
+  .content-page .missionGroup {
+    flex-direction: column;
+  }
+
+  .content-page .missonImg {
+    width: 100%;
+    max-height: 420px;
+  }
+
+  .sketch-page {
+    padding: 5rem 0.75rem 1rem;
+  }
+
+  .sketch-page .row.app2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

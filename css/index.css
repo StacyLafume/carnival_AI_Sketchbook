@@ -15,6 +15,40 @@
   --overlay-bg: rgba(36, 39, 59, 0.3);
   --scrollbar-bg: rgb(1 2 3 / 40%);
 }
+h1.jumbotron-heading {
+  color: aquamarine;
+  padding-top: 2rem;
+}
+h1,
+h2 {
+  font-family: "bd-geminis", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+h1 {
+  font-size: 5rem;
+}
+h2 {
+  font-size: 1.9rem;
+  text-align: center;
+}
+p,
+span,
+a {
+  font-family: "cofo-gothic-variable", sans-serif;
+  font-variation-settings: "wght" 300;
+  font-size: 1.4rem !important;
+}
+.missionH2 {
+  color: white;
+  font-size: 4rem;
+}
+.missionMain {
+  width: 90vw;
+  height: 100vh;
+  padding: 5%;
+  margin-left: 3%;
+}
 
 .colorBorder {
   --borderWidth: -11px;
@@ -25,8 +59,16 @@
   padding: 2%; /* margin: 0px; */
   /* padding: 0px !important; */
 }
-img.card-img-top{
+.imgCard {
   border: 4mm ridge rgba(0, 255, 213, 0.411);
+}
+.cover {
+  background-image: url("../images/dele-oluwayomi-rHy09OtimlE-unsplash.jpg");
+  background-size: cover;
+  height: 30vh;
+  background-repeat: no-repeat;
+  background-position: 0rem -30rem;
+  margin-bottom: 4%;
 }
 .colorBorder::after {
   content: "";
@@ -75,23 +117,21 @@ img.card-img-top{
 }
 
 .app {
-  background-color: var(--theme-bg-color);
+  background-color: #0062cc78;
   max-width: 100%;
-  /* max-height: 867px; */
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border-radius: 14px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  font-size: 15px;
+  overflow: scroll;
+  font-size: 16px;
   font-weight: 500;
+  flex-wrap: nowrap;
 }
 .app2 {
   background-color: var(--theme-bg-color);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
   border-radius: 14px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -103,10 +143,9 @@ img.card-img-top{
 
 h1.jumbotron-heading {
   color: aquamarine;
+
 }
-p.lead.text-muted {
-  color: white !important;
-}
+
 
 section.jumbotron.text-center {
   background: transparent;
@@ -122,28 +161,107 @@ section.jumbotron.text-center {
 }
 .card.mb-4.box-shadow.app {
   padding: 1.5rem; /* border-radius: 30px; */ /* overflow: hidden; */ /* border: 3px solid; */
+  width: 30vw;
 }
 
 .card-body {
   color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: hidden;
+  padding: 0;
+  display: flex;
+  /* align-content: center; */
+  flex-direction: column;
 }
 .album.py-5 {
-  padding-top: 0px !important;
+  padding: 0px 5% !important;
 }
 
 .card.mb-4.box-shadow a {
   border-top-left-radius: 12px;
   overflow: hidden;
   border-top-right-radius: 12px;
-  height: 420px;
-  color: white
+  color: white;
 }
 body {
   background: #eb8979;
+  color: white;
 }
 /* .container{
   max-width: 90%;
 } */
+
+.card-body {
+  padding: 0;
+}
+
+.card {
+  width: 80%;
+}
+.missonImg{
+  vertical-align: middle;
+  border-style: none;
+  height: 90vh;
+  border: 4mm ridge rgba(0, 255, 213, 0.411);
+  margin-right: 10%;
+}
+.missionGroup{
+  display: flex;
+  flex-direction: row;
+  margin-top: 3%;
+}
+
+p.lead.text-muted {
+  color: white !important;
+}
+nav{
+  box-shadow: 0rem 1rem 15px #0046ff24;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+.nav-ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(54, 54, 54);
+  border-radius: 0 !important;
+}
+.nav-li {
+  font-family: "cofo-gothic-variable", sans-serif;
+  font-size: 1.5rem;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: rgb(0, 242, 255); /* Change link color on hover */
+}
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+  /* Your CSS styles for extra small devices */
+  h1 {
+    font-size: 2rem;
+  }
+  p,
+  span,
+  a {
+    font-family: "cofo-gothic-variable", sans-serif;
+    font-variation-settings: "wght" 200;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 576px and up) */
+@media (min-width: 576px) {
+  /* Your CSS styles for small devices */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* Your CSS styles for medium devices */
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* Your CSS styles for large devices */
+}

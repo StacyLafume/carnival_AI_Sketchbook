@@ -11,13 +11,23 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://use.typekit.net/uua6dpi.css">
+  <link rel="stylesheet" href="/css/shared.css">
+
 </head>
 
-<body>
+<body class="home-page">
   <img class="bgBack"
     src="https://media4.giphy.com/media/WUiFJwxw1GKgtU0XVu/giphy.gif?cid=ecf05e471ajgkiny4clqmj217oq3zbpz94tyogkntynw048s&rid=giphy.gif&ct=g"
     alt="">
-
+  <nav class="site-nav">
+    <ul class="nav-ul">
+      <li><a class="nav-li" href="#">Home</a></li>
+      <li><a class="nav-li" href="./pages/mission.html">Mission</a></li>
+      <li><a class="nav-li" href="./pages/carnival.html">What is Carnival</a></li>
+      <li><a class="nav-li" href="./pages/thepress.html">The Press</a></li>
+    </ul>
+  </nav>
   <main role="main">
 
     <section class="jumbotron text-center">
@@ -39,97 +49,55 @@
     <div class="album  py-5">
       <div class="container">
         <div class="row">
-          <a href="pages/attractedShapes.html" target="_blank">
-            <div class="col-md-6">
+          <div class="col-md-3">
+            <a class="home-card-link" href="pages/attractedShapes.html" target="_blank" rel="noopener noreferrer">
               <div class="card mb-4 box-shadow app">
-                <img class="card-img-top" src="/images/attractedShapes.png" alt="Card image cap">
+                <h2 class="card-header">Dancing with Shapes</h2>
                 <div class="card-body">
-                  <a href="pages/attractedShapes.html">
-                    <h2>
-                      Dancing with Shapes
-                    </h2>
-                  </a>
-                  <p class="card-text"> In this web app, we use pose estimation PoseNet, a computer vision technique, to
-                    demonstrate how we can use our bodies to dance with shapes. You can play with the shapes, their
-                    sizes, quantity, and color.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                    </div>
-                  </div>
+                  <img class="imgCard" src="/images/attractedShapes.png" alt="Dancing with Shapes">
+                  <p class="card-text">We use pose estimation PoseNet, a computer vision technique, to demonstrate how
+                    we can use our bodies to dance with shapes. You can play with the shapes, their sizes, quantity, and
+                    color.</p>
                 </div>
               </div>
-            </div>
-          </a>
-          <a href="pages/movementPainting.html" target="_blank">
-            <div class="col-md-6">
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a class="home-card-link" href="pages/movementPainting.html" target="_blank" rel="noopener noreferrer">
               <div class="card mb-4 box-shadow app">
-                <img class="card-img-top" src="/images/movementPainting.png" alt="Card image cap">
+                <h2 class="card-header">Movement Painting</h2>
                 <div class="card-body">
-                  <a href="pages/movementPainting.html">
-                    <h2>
-                      Movement Painting
-                    </h2>
-                  </a>
-                  <p class="card-text"> In this web app, you can use your body and AI to create paintings with shapes.
-                    You can play with shapes, their sizes, quantity, and color to create beautiful artwork as you wine
-                    and dance.
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                    </div>
-                  </div>
+                  <img class="imgCard" src="/images/movementPainting.png" alt="Movement Painting">
+                  <p class="card-text">Use your body and AI to create paintings with shapes. You can play with shapes,
+                    their sizes, quantity, and color to create beautiful artwork as you wine and dance.</p>
                 </div>
               </div>
-            </div>
-          </a>
-          <a href="pages/winingPartner.html" target="_blank">
-            <div class="col-md-6">
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a class="home-card-link" href="pages/winingPartner.html" target="_blank" rel="noopener noreferrer">
               <div class="card mb-4 box-shadow app">
-                <img class="card-img-top" src="images/miniDancer.png" alt="Card image cap">
+                <h2 class="card-header">Wining Partner</h2>
                 <div class="card-body">
-                  <a href="pages/winingPartner.html" target="_blank">
-                    <h2>
-                      Wining Partner
-                    </h2>
-                  </a>
-                  <p class="card-text"> In this app, you can have your very own AI wining partner. No need to wine,
-                    jump, or chip alone, you have your very own AI famalaylaylaylaylaylaylay!!!!
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                    </div>
-                  </div>
+                  <img class="imgCard" src="images/miniDancer.png" alt="Wining Partner">
+                  <p class="card-text">Looking for a partner? Meet your personal AI "wining" companion! No need to wine,
+                    jump, or chip solo – with your very own AI by your side, you'll never miss a beat or a step. Let's
+                    celebrate together with your AI <i>famalaylaylaylaylaylaylay!</i></p>
                 </div>
               </div>
-            </div>
-          </a>
-          <div class="col-md-6">
-            <div class="card mb-4 box-shadow app">
-              <img class="card-img-top" src="/images/digitalCostume.png" alt="Card image cap">
-              <div class="card-body">
-                <a href="pages/digitalCostume.html">
-                  <h2>
-                    Digital costume
-                  </h2>
-                </a>
-                <p class="card-text">In this app, you can wear digital costuming for the Carnival, celebrating our
-                  creativity, movements, and history of the Carnival and its extension with artificial intelligence AI.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                  </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a class="home-card-link" href="pages/digitalCostume.html" target="_blank" rel="noopener noreferrer">
+              <div class="card mb-4 box-shadow app">
+                <h2 class="card-header">Digital costume</h2>
+                <div class="card-body">
+                  <img class="imgCard" src="/images/digitalCostume.png" alt="Digital costume">
+                  <p class="card-text">Wear digital costuming for the Carnival, celebrating our creativity, movements,
+                    and history of the Carnival and its extension with artificial intelligence AI.</p>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

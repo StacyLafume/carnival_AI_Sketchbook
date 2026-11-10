@@ -67,7 +67,13 @@
                 </div>
                 <p class="controls-launcher__hint">Choose the shapes, colors, and body movements in your artwork.</p>
             </div>
-            <div id="middle"></div>
+            <div class="camera-stage" id="camera-stage">
+                <button class="camera-stage__fullscreen" type="button" aria-pressed="false">
+                    Full screen
+                </button>
+                <span class="camera-stage__status" role="status" aria-live="polite"></span>
+                <div id="middle"></div>
+            </div>
             <dialog class="controls-dialog" id="artwork-controls" aria-labelledby="artwork-controls-title"
                 aria-describedby="artwork-controls-description">
                 <div class="controls-dialog__header">
@@ -85,6 +91,7 @@
     </div>
 
     <script src="/js/controlsDialog.js"></script>
+    <script src="/js/cameraFullscreen.js"></script>
     <script src="/js/attractedShapes.js"></script>
 </body>
 

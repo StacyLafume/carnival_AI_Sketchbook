@@ -55,19 +55,39 @@
                     </div>
                 </div>
                 <div class="row app2">
+                    <div class="controls-launcher">
+                        <button class="controls-launcher__button" type="button" aria-haspopup="dialog"
+                            aria-controls="artwork-controls">
+                            Customize movement
+                        </button>
+                        <p class="controls-launcher__hint">Choose the shapes, colors, and body movements in your painting.</p>
+                    </div>
                     <div class="col" id="leftCanvas">
                         
                     </div>
                     <div class="col" id="rightCanvas">
                   
                     </div>
-                    <div class="mainContent" aria-label="Sketch controls"></div>
+                    <dialog class="controls-dialog" id="artwork-controls" aria-labelledby="artwork-controls-title"
+                        aria-describedby="artwork-controls-description">
+                        <div class="controls-dialog__header">
+                            <div>
+                                <h2 id="artwork-controls-title">Make it yours</h2>
+                                <p id="artwork-controls-description">Adjust shapes, colors, size, and body parts.</p>
+                            </div>
+                            <button class="controls-dialog__close" type="button" aria-label="Close customization settings">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="mainContent" role="group" aria-label="Artwork settings"></div>
+                    </dialog>
                 </div>
             </div>
        <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
+        <script src="/js/controlsDialog.js"></script>
         <script src="/js/movementPainting.js" async defer></script>
       
     </body>

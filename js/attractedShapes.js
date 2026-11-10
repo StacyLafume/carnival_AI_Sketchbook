@@ -3,7 +3,6 @@ let AttractedShapesSketch = function (p) {
   let poseNet;
   let pose;
   let skeleton;
-  let vid;
   let hue = 0;
   p.interval = 2;
   let saveButton
@@ -55,6 +54,54 @@ let AttractedShapesSketch = function (p) {
     this.ankles = false;
   }
 
+  function labelControl(controller, label, className) {
+    controller.name(label);
+    const input = controller.domElement.querySelector("input");
+    if (input) input.setAttribute("aria-label", label);
+    if (className) controller.domElement.closest("li.cr").classList.add(className);
+  }
+
+  function makeFolderAccessible(folder, label) {
+    folder.domElement.setAttribute("role", "group");
+    folder.domElement.setAttribute("aria-label", label);
+    const title = folder.domElement.querySelector(".title");
+    title.setAttribute("role", "button");
+    title.setAttribute("tabindex", "0");
+    title.setAttribute("aria-expanded", "true");
+    title.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        title.click();
+      }
+    });
+    title.addEventListener("click", () => {
+      title.setAttribute("aria-expanded", String(!folder.closed));
+    });
+  }
+
+  function makeGuiAccessible(gui) {
+    gui.domElement.setAttribute("role", "group");
+    gui.domElement.setAttribute("aria-label", "Artwork settings");
+    const closeButton = gui.domElement.querySelector(".close-button");
+    closeButton.setAttribute("role", "button");
+    closeButton.setAttribute("tabindex", "0");
+    closeButton.setAttribute("aria-expanded", "true");
+    closeButton.setAttribute("aria-label", "Close artwork settings");
+    closeButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        closeButton.click();
+      }
+    });
+    closeButton.addEventListener("click", () => {
+      closeButton.setAttribute("aria-expanded", String(!gui.closed));
+      closeButton.setAttribute(
+        "aria-label",
+        gui.closed ? "Open artwork settings" : "Close artwork settings"
+      );
+    });
+  }
+
   let gui = new dat.GUI();
   let size = new Size();
   let colors = new Color();
@@ -69,33 +116,38 @@ let AttractedShapesSketch = function (p) {
   let ankles = new Ankles();
 
   const settings = gui.addFolder("Settings");
-  settings.add(size, "size", 1, 5);
-  settings.add(howMany, "amount", 1, 100);
+  labelControl(settings.add(size, "size", 1, 5), "Particle size");
+  labelControl(settings.add(howMany, "amount", 1, 100), "Number of shapes");
   settings.open();
+  makeFolderAccessible(settings, "Settings");
 
   const shapes = gui.addFolder("Shapes");
-  shapes.add(triangle, "triangle");
-  shapes.add(circle, "circle");
+  labelControl(shapes.add(triangle, "triangle"), "Show triangles");
+  labelControl(shapes.add(circle, "circle"), "Show circles");
   shapes.open();
+  makeFolderAccessible(shapes, "Shapes");
 
   const bodyParts = gui.addFolder("Attracted Body Parts");
-  bodyParts.add(shoulders, "shoulders");
-  bodyParts.add(hips, "hips");
-  bodyParts.add(wrists, "wrists");
-  bodyParts.add(head, "head");
-  bodyParts.add(knees, "knees");
-  bodyParts.add(ankles, "ankles");
+  labelControl(bodyParts.add(shoulders, "shoulders"), "Shoulders");
+  labelControl(bodyParts.add(hips, "hips"), "Hips");
+  labelControl(bodyParts.add(wrists, "wrists"), "Wrists");
+  labelControl(bodyParts.add(head, "head"), "Head");
+  labelControl(bodyParts.add(knees, "knees"), "Knees");
+  labelControl(bodyParts.add(ankles, "ankles"), "Ankles");
   bodyParts.open();
+  makeFolderAccessible(bodyParts, "Attracted body parts");
 
   const color = gui.addFolder("Colors");
-  color.add(colors, "red");
-  color.add(colors, "orange");
-  color.add(colors, "yellow");
-  color.add(colors, "green");
-  color.add(colors, "blue");
-  color.add(colors, "purple");
-  color.add(colors, "random");
+  labelControl(color.add(colors, "red"), "Use red", "color-red");
+  labelControl(color.add(colors, "orange"), "Use orange", "color-orange");
+  labelControl(color.add(colors, "yellow"), "Use yellow", "color-yellow");
+  labelControl(color.add(colors, "green"), "Use green", "color-green");
+  labelControl(color.add(colors, "blue"), "Use blue", "color-blue");
+  labelControl(color.add(colors, "purple"), "Use purple", "color-purple");
+  labelControl(color.add(colors, "random"), "Use random colors");
   color.open();
+  makeFolderAccessible(color, "Colors");
+  makeGuiAccessible(gui);
 
   class Particle {
     constructor(x, y, color) {
@@ -173,29 +225,43 @@ let AttractedShapesSketch = function (p) {
   }
 
   function resetSketch() {
-    vid.size(WIDTH, HEIGHT);
-    video = p.createCapture(p.VIDEO);
+    video = p.createCapture({
+      video: {
+        width: { ideal: 320 },
+        height: { ideal: 240 },
+        frameRate: { ideal: 15, max: 20 },
+      },
+    });
     video.size(WIDTH, HEIGHT);
     video.hide();
-    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet = ml5.poseNet(
+      video,
+      {
+        architecture: "MobileNetV1",
+        imageScaleFactor: 0.5,
+        outputStride: 16,
+        multiplier: 0.5,
+        maxPoseDetections: 1,
+        detectionType: "single",
+      },
+      modelLoaded
+    );
     poseNet.on("pose", gotPoses);
   }
 
   p.setup = function () {
     let canvas = p.createCanvas(WIDTH, HEIGHT);
     canvas.parent("middle");
-    vid = p.createVideo("/videos/adele/slowWine.mp4", vidLoad);
-    function vidLoad() {
-      vid.loop();
-      vid.volume(0);
-    }
-
+    p.frameRate(30);
     resetSketch();
 
     p.background(50);
-    saveButton = p.createButton("save");
+    saveButton = p.createButton("Save artwork");
     saveButton.mousePressed(save);
     saveButton.addClass("app2");
+    saveButton.attribute("aria-label", "Save artwork as an image");
+    const controlsActions = document.querySelector(".controls-launcher__actions");
+    saveButton.parent(controlsActions);
   };
   
   function save() {
@@ -207,9 +273,6 @@ let AttractedShapesSketch = function (p) {
     p.strokeWeight(0);
     p.stroke(51);
     if (pose) {
-      let eyeR = pose.rightEye;
-      let eyeL = pose.leftEye;
-      let d = p.dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
       p.push();
       p.translate(p.width, 0);
       p.scale(-1, 1);
@@ -280,13 +343,6 @@ let AttractedShapesSketch = function (p) {
           )
         : null;
 
-      for (let i = 0; i < pose.keypoints.length; i++) {
-        let x = pose.keypoints[i].position.x;
-        let y = pose.keypoints[i].position.y;
-        p.colorMode(p.HSL, 255);
-        p.fill(99, 255, 50);
-      }
-
       for (let i = 0; i < skeleton.length; i++) {
         let a = skeleton[i][0];
         let b = skeleton[i][1];
@@ -297,7 +353,7 @@ let AttractedShapesSketch = function (p) {
         p.line(a.position.x, a.position.y, b.position.x, b.position.y);
       }
 
-      if (p.frameCount % (p.interval * 60) === 0) {
+      if (p.frameCount % (p.interval * 30) === 0) {
         const newParticleCount = int - particleArray.length;
         if (newParticleCount < 0) {
           particleArray.splice(0, Math.abs(newParticleCount));
